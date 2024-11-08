@@ -58,13 +58,17 @@ h1.fourth span:first-child {
   <div class="table-wrapper">
 
   <div class="container">
+  <div class="add-more-btn">
+<a href="<?php echo base_url('blogpost')?>"  class="btn btn-outline-primary">Add Blogs </a>
 
+</div>
     <?php
    
      $data=json_decode(json_encode(  $data),true);?>
+     
 	<h1 class="fourth " style='color:blue'><span>User</span><span>Table</span></h1>
   
-   
+
     <!-- ?> -->
   
   <table class="rwd-table">

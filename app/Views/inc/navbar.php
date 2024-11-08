@@ -13,10 +13,7 @@
             <h2><?php  echo  session('username');?></h2>         
      </div>
               <!-- /Search -->
-              <div class="add-more-btn">
-<a href="<?php echo base_url('blogpost')?>"  class="btn btn-outline-primary">Add Blogs </a>
-
-</div>
+   
        
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- Place this tag where you want the button to render. -->

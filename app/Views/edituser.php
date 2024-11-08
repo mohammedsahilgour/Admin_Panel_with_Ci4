@@ -58,7 +58,7 @@
        
        <label for="psw"><b>Password</b></label>
        <input type="password" placeholder="Enter Password" name="password"  value="<?php echo $data[0]['password']?>">
-       <input type="hidden" placeholder="Enter Password" name="id"  value="<?php echo $data[0]['id']?>">
+       <input type="hidden"  name="id"  value="<?php echo $data[0]['id']?>">
 
    
          <label for="email"><b>Phone Number</b></label>
