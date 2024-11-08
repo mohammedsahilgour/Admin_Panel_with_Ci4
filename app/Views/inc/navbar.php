@@ -10,13 +10,17 @@
 
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
             <!-- session name  -->
-            <h2><?php  echo "Welcome   " . session('username');?></h2>         
+            <h2><?php  echo  session('username');?></h2>         
      </div>
               <!-- /Search -->
+              <div class="add-more-btn">
+<a href="<?php echo base_url('blogpost')?>"  class="btn btn-outline-primary">Add Blogs </a>
 
+</div>
+       
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- Place this tag where you want the button to render. -->
-                <li class="nav-item lh-1 me-3">
+                <!-- <li class="nav-item lh-1 me-3">
                   <a
                     class="github-button"
                     href="https://github.com/themeselection/sneat-html-admin-template-free"
@@ -26,13 +30,16 @@
                     aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"
                     >Star</a
                   >
-                </li>
-
-                <!-- User -->
+                </li> -->
+         <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                      <!-- <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" /> -->
+                    
+                    <div class="account-section">
+                     <h4 style="color: white"> Account </h4>
+                    </div>
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -41,12 +48,12 @@
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                              <!-- <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" /> -->
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">John Doe</span>
-                            <small class="text-muted">Admin</small>
+                            <span class="fw-semibold d-block"><?php echo session('username')?></span>
+                            <small class="text-muted">User</small>
                           </div>
                         </div>
                       </a>

@@ -64,5 +64,4 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="<?php echo base_url('assets/js/config.js')?>"></script>
   </head>
-
   <body>

@@ -32,6 +32,10 @@ class user extends BaseController
         }
 
     }
+    public function blogpage(){
+        return view('blogpost');
+
+    }
 
     // open login page //
     public function loginpage(){
@@ -66,7 +70,9 @@ class user extends BaseController
                 echo "login in ";
                 // return view('inc/header');
 
-                return view('blogpost');
+                return redirect()->to('userblogs'); 
+
+                // here 
              
             }else{
                 echo "not ";
@@ -104,4 +110,87 @@ class user extends BaseController
        }
     }
 
+    // user blog table //
+    public function userblogs(){
+        $model = new login_model();
+       $data =  $model->select_user_data();
+      
+      return view('userblog' , ['data'=> $data]);
+    }
+    public function editblog(){
+       
+        $id = $_GET['id'];
+   
+        $model = new login_model();
+      $data =   $model->user_edit_data($id);
+   
+      return view('editblog',['data'=>$data]);
+    }
+
+    public function updateblog(){
+ 
+        
+        $data = $this->request->getPost();
+    //  print_r($data);
+    //  die;
+        $model = new login_model();
+        $data = $model->update_data($data);
+     
+        if($data){
+            // return view('editblog');
+            return redirect()->to('userblogs'); 
+        }else{
+            echo "dedec";
+            die;
+
+        }
+
+    }
+
+    public function deleteblog(){
+        // echo "cdc";
+        $id = $_GET['id'];
+        
+        $model = new login_model();
+        $delete = $model->deletedata($id);
+        if($delete== true ){
+            return redirect()->to('userblogs'); 
+
+        }
+    }
+
+    // user table 
+    public function usersection(){
+        $model = new login_model();
+        $data =  $model->select_user();
+        // print_r($data);
+        // die;
+        return view('usertable' , ['data'=> $data]);
+      
+    }
+    public function edituser(){
+        $id = $_GET['id'];
+        
+        $model = new login_model();
+       $data =  $model->userdata($id);
+       $data=json_decode(json_encode($data),true);
+        return view ('edituser',['data'=>$data]);
+      
+    }
+    public function updateuserdata(){
+        $data = $this->request->getPost();
+     
+        $model = new login_model();
+        $model->update_user_data($data);
+        return redirect()->to('usersection'); 
+
+    }
+    public function deleteuser(){
+        $id = $_GET['id'];
+        $model = new login_model();
+      $delete =   $model->deleteuser($id);
+      return redirect()->to('usersection'); 
+      
+        
+    }
 }

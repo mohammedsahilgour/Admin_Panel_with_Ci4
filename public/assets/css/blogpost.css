@@ -25,12 +25,13 @@ body {
 }
 /* container and form */
 .container {
-  max-width: 750px;
+  max-width: 738px;
   width: 100%;
+  height: 93%;
   background: #fff;
   padding: 25px 30px;
   border-radius: 5px;
-  margin-top: 16px;
+  margin-top: 77px;
 }
 .container .title {
   font-size: 25px;
