@@ -50,7 +50,7 @@
          <label for="email"><b>Username</b></label>
          <input type="text" name="name" placeholder="Enter Username" value="<?php echo $data[0]['name']?>" >
         
-         <label for="email"><b>Emails</b></label>
+         <label for="email"><b>Email</b></label>
          <?php
          
          ?>
@@ -70,12 +70,12 @@
    
        <div class="clearfix"><br>
    
-         <button type="submit" class="btn">Update </button>
+         <button type="submit" >Update </button>
        </div>
      </div>
    </form>
 
-<div class="youtubeBtn">
+<!-- <div class="youtubeBtn"> -->
 
  </a>
 

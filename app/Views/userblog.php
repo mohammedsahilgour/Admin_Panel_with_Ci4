@@ -65,7 +65,10 @@ h1.fourth span:first-child {
     //  print_r($data);
     //  die;
     
-    ?>
+    ?>  <div class="add-more-btn"  style="margin-left:100px">
+    <a href="<?php echo base_url('blogpost')?>" class="btn btn-outline-primary">Add Blogs </a>
+    
+    </div>
     	<h1 class="fourth " style='color:blue'><span>User</span><span>Blogs</span></h1>
 
   <table class="rwd-table">

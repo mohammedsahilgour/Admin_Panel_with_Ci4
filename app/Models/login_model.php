@@ -81,5 +81,30 @@ class login_model extends Model
         $builder->delete();
             return true ;
     }
+    public function get_profile_data(    $id ){
+        $query = $this->db->query("SELECT * FROM form WHERE id = ' $id' ");
+        return  $result = $query->getResult();
+
+    }
+    public function update_profile_data( $data ){
+        $id = session('id');
+   
+        $db      = \Config\Database::connect();
+        $model= $db->table('form');
+      $check =   $model->where('id', $id )->set(['name'=>$data['username'],'email'=>$data['email'],'password'=>$data['password'],
+      'number'=>$data['number']])->update();
+ 
+        return $check;
+    }
+    public function get_company_data(){
+        $query = $this->db->query("SELECT * FROM companydata ");
+        return  $result = $query->getResult();
+    }
+
+  
+    public function   get_company_country(){
+        $query = $this->db->query("SELECT * FROM country ");
+        return  $result = $query->getResult();
+    }
 }
 ?>

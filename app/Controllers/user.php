@@ -193,4 +193,30 @@ class user extends BaseController
       
         
     }
+    public function myprofile(){
+      $id = session('id');
+      $model = new login_model();
+    $data =   $model->get_profile_data( $id );
+    return view('myprofile',['data' => $data]);
+    }
+    
+    public function updatemyprofile(){
+        $data = $this->request->getPost();
+     
+      $model = new login_model();
+      $model->update_profile_data( $data );
+      return redirect()->to('myprofile'); 
+
+    }
+
+    public function companysection(){
+
+        $model = new login_model();
+      $data =   $model->get_company_data();
+      $country =  $model->get_company_country();
+
+      
+        return view('companysetting',['data'=>$data ,'country'=>$country]);
+    }
+ 
 }

@@ -1,0 +1,174 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  body {
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .container {
+    width: 80%;
+    height: 85%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: -35%;
+    margin-top: 12%;
+  }
+  
+  /* Main Content Styles */
+  .main-content {
+    width: 100%;
+    padding: 20px;
+    animation: fadeIn 1s ease-out;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+    animation: slideIn 1s ease-out;
+  }
+  
+  /* Profile Form Styles */
+  .profile-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    animation: formGroupAnimation 0.5s ease-out;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: transparent;
+    transition: all 0.3s ease;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: #3e4b5b;
+    outline: none;
+    animation: inputFocus 0.3s ease-out;
+  }
+  
+  .form-group input:focus + label,
+  .form-group textarea:focus + label {
+    top: -10px;
+    font-size: 0.9rem;
+    color: #3e4b5b;
+  }
+  
+  /* Label Styles for Floating Effect */
+  .form-group label {
+    font-size: 1rem;
+    color: #777;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+  
+  .form-group input:not(:placeholder-shown) + label,
+  .form-group textarea:not(:placeholder-shown) + label {
+    top: -10px;
+    font-size: 0.9rem;
+    color: #3e4b5b;
+  }
+  
+  .submit-btn {
+    padding: 12px 20px;
+    background-color: #3e4b5b;
+    color: white;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: #2f3b47;
+    transform: scale(1.05);
+  }
+  
+  .submit-btn:active {
+    transform: scale(0.98);
+  }
+  
+  /* Animation Effects */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes inputFocus {
+    from {
+      border-color: #ccc;
+    }
+    to {
+      border-color: #3e4b5b;
+    }
+  }
+  
+  @keyframes formGroupAnimation {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .container {
+      width: 90%;
+    }
+  
+    h1 {
+      font-size: 2rem;
+    }
+  }

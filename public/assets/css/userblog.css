@@ -194,6 +194,12 @@ h3:after {
   width: 300px;
   /* background-color: #428bca; */
   margin-left: -30%;
+  margin-top: 80px;
+}
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+  cursor: pointer;
+  background-color: cornflowerblue;
+  color: white;
 }
 @-webkit-keyframes leftRight {
   0%    { -webkit-transform: translateX(0)}

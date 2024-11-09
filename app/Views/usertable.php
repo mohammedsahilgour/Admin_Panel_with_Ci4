@@ -58,8 +58,8 @@ h1.fourth span:first-child {
   <div class="table-wrapper">
 
   <div class="container">
-  <div class="add-more-btn">
-<a href="<?php echo base_url('blogpost')?>"  class="btn btn-outline-primary">Add Blogs </a>
+  <div  style="margin-left:100px">
+<a href="<?php echo base_url('blogpost')?>" class="btn btn-outline-primary">Add Blogs </a>
 
 </div>
     <?php

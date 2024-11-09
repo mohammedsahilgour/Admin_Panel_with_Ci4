@@ -25,6 +25,11 @@ $routes->match(['get','post'], 'usersection', 'user::usersection');
 $routes->match(['get','post'], 'edituser', 'user::edituser');
 $routes->match(['get','post'], 'updateuserdata', 'user::updateuserdata');
 $routes->match(['get','post'], 'deleteuser', 'user::deleteuser');
+$routes->match(['get','post'], 'myprofile', 'user::myprofile');
+$routes->match(['get','post'], 'updatemyprofile', 'user::updatemyprofile');
+$routes->match(['get','post'], 'companysection', 'user::companysection');
+
+
 
 
 
