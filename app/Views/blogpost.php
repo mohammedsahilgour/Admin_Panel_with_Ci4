@@ -1,4 +1,4 @@
-    <?php
+<?php
         include("inc/header.php");
     ?>
       <link rel="stylesheet" href="<?php echo base_url('assets/css/blogpost.css')?>" />
@@ -102,7 +102,7 @@
                     <li>
                       <a class="dropdown-item" href="auth-login-basic.html">
                         <i class="bx bx-power-off me-2"></i>
-                        <span class="align-middle">Log Out</span>
+                        <span class="align-middle">Log Outt</span>
                       </a>
                     </li>
                   </ul>
@@ -201,7 +201,6 @@
       <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <!-- / Layout wrapper -->
-
 
   <?php
     include("inc/footer.php");
