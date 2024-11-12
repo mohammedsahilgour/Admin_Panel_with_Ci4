@@ -122,6 +122,7 @@
             <?php }?>
           </div>
     </section>
+    
     <!--EVENTS SECTION-->
     <section class="events" id="events">
         <div class="titletext">
