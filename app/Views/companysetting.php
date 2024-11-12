@@ -50,14 +50,17 @@ margin-top: 50px;;
 
 
     <!-- Main Content -->
-    <div class="container">
-    <h1>Company Detail</h1>
     <?php
    $data=json_decode(json_encode($data),true);
    $country=json_decode(json_encode($country),true);
-   print_r($data);
-   print_r($country);
+//    print_r($data);
+//    print_r($country);
    ?>
+    <div class="container">
+    <form id="patientForm" method='POST' action="<?php echo base_url('companydataupdate')?>">
+
+    <h1>Company Detail</h1>
+
     
     <div class="progress-bar-company-section">
         <div class="progress"></div>
@@ -66,13 +69,12 @@ margin-top: 50px;;
         <div class="step">3</div>
     </div>
 
-    <form id="patientForm">
         <!-- Personal Information -->
         <div class="form-section active" id="section1">
             <h2>Company  Information</h2>
             <div class="form-group">
                 <label for="fullName">Company  Name</label>
-                <input type="text" id="fullName" value="<?php echo $data[0]['companyname']?>" required>
+                <input type="text" name="companyname" id="fullName" value="<?php echo $data[0]['companyname']?>" required>
             </div>
             <div class="form-group">
                 <label for="dob">Established Date </label>
@@ -86,16 +88,16 @@ margin-top: 50px;;
 
                 // Output the HTML with the formatted date
                 ?>
-            <input type="date" id="dob" value="<?php echo $formatted_date; ?>" required>
+            <input type="date" id="dob" name="established_date" value="<?php echo $formatted_date; ?>" required>
 
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email"value="<?php echo $data[0]['email']?>" required>
+                <input type="email" name="email" id="email"value="<?php echo $data[0]['email']?>" required>
             </div>
             <div class="form-group">
                 <label for="phone">Contact  Number</label>
-                <input type="tel" id="phone" value="<?php echo $data[0]['number']?>"required>
+                <input type="tel" id="phone"name="number"  value="<?php echo $data[0]['number']?>"required>
             </div>
             <div class="btn-group">
                 <button type="button" class="btn-prev" disabled>Previous</button>
@@ -108,7 +110,7 @@ margin-top: 50px;;
             <h2>Location</h2>
             <div class="form-group">
                 <label for=""> Country</label>
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example" name="country"  >
                 <?php foreach($country as $c){?>
                 <option selected><?php echo $c['country']?></option>
                 <!-- <option value="1">One</option> -->
@@ -118,16 +120,16 @@ margin-top: 50px;;
             <div class="form-group">
             <label for=""> State</label>
 
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example"name="state" >
             <?php foreach($country as $c){?>
                 <option selected><?php echo $c['state']?></option>
                 <!-- <option value="1">One</option> -->
                 <?php }?>
-            </select>
+            </select >
             </div>
             <div class="form-group">
                 <label for="allergies">City</label>
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" aria-label="Default select example"name="city">
                 <?php foreach($country as $c){?>
                 <option selected><?php echo $c['city']?></option>
                 <!-- <option value="1">One</option> -->
@@ -145,30 +147,29 @@ margin-top: 50px;;
             <!-- <h2>Insurance Information</h2> -->
             <div class="form-group">
                 <label for="provider">SEO  description </label>
-                <input type="text" id="provider" value="<?php echo $data[0]['description']?>" required>
+                <input type="text" id="provider"name="description" value="<?php echo $data[0]['description']?>" required>
             </div>
             <div class="form-group">
             <label for="provider">SEO  Title </label>
 
-                <input type="text" id="policyNumber"  value="<?php echo $data[0]['Title']?>"required>
+                <input type="text" id="policyNumber" name="title" value="<?php echo $data[0]['Title']?>"required>
             </div>
             <div class="form-group">
                 <label for="groupNumber">Contact Person </label>
-                <input type="text" id="groupNumber"  value="<?php echo $data[0]['Contact_Person']?>">
+                <input type="text" id="groupNumber" name="contactperson" value="<?php echo $data[0]['Contact_Person']?>">
             </div>
             <div class="btn-group">
                 <button type="button" class="btn-prev">Previous</button>
                 <button type="submit" class="btn-submit">Submit</button>
+                
             </div>
         </div>
-    </form>
 
-    <div class="success-message">
-        <i class="fas fa-check-circle"></i>
-        Form submitted successfully!
+ </div>
+ </form>
+
     </div>
-</div>
-  </div></div>
+    </div>
 
           </div>
             <!-- / Content -->

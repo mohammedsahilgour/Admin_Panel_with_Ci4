@@ -122,10 +122,11 @@
             <div class="container">
                 <div class="title">Blog Post </div>
            
-                <form action="<?php echo base_url('blogpost')?>" method="POST">
+                <form action="<?php echo base_url('insertblogpost')?>" method="POST" enctype="multipart/form-data">
                     <div class="user__details">
                     <div class="input__box">
                         <span class="details"> Name</span>
+
                         <input type="text" placeholder="E.g: John Smith" name="name"required>
                         <input type="hidden" placeholder="E.g: John Smith" name="user_id" value="<?php echo session('id')?>" >
 
@@ -172,10 +173,14 @@
                     </div>
 
                     </div>
-                    <div >
+                      <div class="mb-3">
+                          <label for="formFileDisabled" class="form-label">Blog Image </label>
+                          <input class="form-control" type="file" name="image"id="formFileDisabled" >
+                      </div>
+                  <div >
                     <span class="details">Description</span>
                        
-                        <input type="text"class="input__box_phone" name="description" placeholder="" required>
+                        <input type="text"class="input__box_phone" name="description" placeholder=" eg :Description" required>
                     </div>
                
                     <div class="button">

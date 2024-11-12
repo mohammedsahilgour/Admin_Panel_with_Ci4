@@ -56,9 +56,10 @@ body{
 }
 .rwd-table {
   margin: auto;
-  width: 103%;
+  width: 100%;
   border-collapse: collapse;
   margin-left: 50px;
+  margin-top: 20px
 }
 
 .rwd-table tr:first-child {

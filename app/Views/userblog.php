@@ -65,24 +65,30 @@ h1.fourth span:first-child {
     //  print_r($data);
     //  die;
     
-    ?>  <div class="add-more-btn"  style="margin-left:100px">
+    ?>  
+    	<h1 class="fourth " style='color:blue'><span>User</span><span>Blogs</span></h1>
+      <div class="add-more-btn"  style="margin-left:100px">
     <a href="<?php echo base_url('blogpost')?>" class="btn btn-outline-primary">Add Blogs </a>
     
     </div>
-    	<h1 class="fourth " style='color:blue'><span>User</span><span>Blogs</span></h1>
-
   <table class="rwd-table">
     <tbody>
       <tr>
         <th> s.no</th>
         <th>Name</th>
         <th>Date</th>
+        <th>Image</th>
+
         <th>Title</th>
         <th>Contact</th>
         <th colspan='2'>Action </th>
       
       </tr>
       <?php $count = 1;?>
+      <?php
+      // print_r($data);die;
+      
+      ?>
       <?php foreach($data as $user_data){?>
       <tr>
   
@@ -95,6 +101,11 @@ h1.fourth span:first-child {
         </td>
         <td data-th="Supplier Name">
         <?php echo $user_data['date'] ?>
+
+        </td>
+        <td data-th="Supplier Name">
+        <img src="<?php echo base_url().'uploadimg/'.$user_data['image']; ?>"style="width:50px" alt="card__image" class="card__image" width="600">
+
 
         </td>
         <td data-th="Invoice Number">

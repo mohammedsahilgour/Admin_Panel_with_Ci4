@@ -60,21 +60,21 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Form submission
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
+    // form.addEventListener('submit', function(e) {
+    //     e.preventDefault();
         
-        // Add your form submission logic here
+    //     // Add your form submission logic here
         
-        // Show success message
-        const successMessage = document.querySelector('.success-message');
-        successMessage.style.display = 'block';
+    //     // Show success message
+    //     const successMessage = document.querySelector('.success-message');
+    //     successMessage.style.display = 'block';
         
-        // Hide form sections
-        sections.forEach(section => section.style.display = 'none');
+    //     // Hide form sections
+    //     sections.forEach(section => section.style.display = 'none');
         
-        // Hide progress bar
-        document.querySelector('.progress-bar-company-section').style.display = 'none';
-    });
+    //     // Hide progress bar
+    //     document.querySelector('.progress-bar-company-section').style.display = 'none';
+    // });
 
     // Initialize
     showSection(0);

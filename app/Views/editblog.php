@@ -60,12 +60,12 @@
                         <span class="details">Title</span>
                         <input type="text" placeholder="Title" name="title"value="<?php echo $data[0]['title'] ?>"required>
                     </div>
-                    <div class="input__box">
-                    <div class="gender__details">
-                    <input type="radio" name="gender" value="male" id="dot-1" <?php echo ($data[0]['gender'] == 'male') ? 'checked' : ''; ?>>
-                    <input type="radio" name="gender" value="female" id="dot-2" <?php echo ($data[0]['gender'] == 'female') ? 'checked' : ''; ?>>
-                    <input type="radio" name="gender" value="other" id="dot-3" <?php echo ($data[0]['gender'] == 'other') ? 'checked' : ''; ?>>
-                    <span class="gender__titleee">Gender</span>
+                      <div class="input__box">
+                      <div class="gender__details">
+                      <input type="radio" name="gender" value="male" id="dot-1" <?php echo ($data[0]['gender'] == 'male') ? 'checked' : ''; ?>>
+                      <input type="radio" name="gender" value="female" id="dot-2" <?php echo ($data[0]['gender'] == 'female') ? 'checked' : ''; ?>>
+                      <input type="radio" name="gender" value="other" id="dot-3" <?php echo ($data[0]['gender'] == 'other') ? 'checked' : ''; ?>>
+                      <span class="gender__titleee">Gender</span>
                     
                     
                     <div class="category">
@@ -86,9 +86,10 @@
                     </div>
 
                     </div>
+                    <!-- <input type="file" id="imageUpload" name="image">
+                      <span id="fileName"><?php echo isset($data[0]['image']) ? $data[0]['image'] : ''; ?></span> -->
                     <div >
                     <span class="details">Description</span>
-                       
                         <input type="text"class="input__box_phone" value="<?php echo $data[0]['description'] ?>"name="description" placeholder="" required>
                     </div>
                
@@ -98,11 +99,7 @@
                     </div>
                 </form>
                 </div>
-            <!-- / Content -->
-            <!-- end  -->
-            <!-- Footer -->
-        
-            <!-- / Footer -->
+      
 
             <div class="content-backdrop fade"></div>
           </div>
@@ -127,3 +124,10 @@
 
   </body>
 </html>
+<script>
+document.getElementById('imageUpload').addEventListener('change', function() {
+    var fileName = this.files[0] ? this.files[0].name : ''; // Get the file name
+    document.getElementById('fileName').textContent = fileName; // Update the span with the file name
+});
+</script>
+
