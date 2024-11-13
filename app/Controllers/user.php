@@ -343,4 +343,46 @@ class user extends BaseController
         return redirect()->to('newstable'); 
     }
 
+    public function menusection(){
+        return view("menusection");
+    }
+
+    public function savemenu(){
+     
+       $data = $this->request->getPost();
+        $model = new login_model();
+        $model->save_menu_data($data );
+        return redirect()->to('menusection'); 
+
+    }
+
+    public function menulist(){
+        $model = new login_model();
+       $data =  $model->menu_table();
+       $data=json_decode(json_encode($data),true);
+
+       return view("menutable",['data'=>$data]);
+
+    }
+
+    public function editmenu(){
+        $id = $_GET['id'];
+        // echo $id ; die;
+        $model = new login_model();
+        $data = $model->get_menu_data( $id );
+        $data=json_decode(json_encode($data),true);
+        // print_r($data);die;
+        return view("editmenu",['data'=>$data]);
+    }
+
+    public function updatemenu(){
+        $data = $this->request->getPost();
+        // print_r($data);die;
+        $model = new login_model();
+        $model->update_menu_data($data);
+        return redirect()->to('menulist'); 
+
+
+    }
+
 }

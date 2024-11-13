@@ -6,25 +6,15 @@
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
       
-<!-- left sider  -->
-       
-        <!-- / Menu -->
-
-        <!-- Layout container -->
         <div class="layout-page">
-      
-
           <!-- Navbar -->
           <div class="content-wrapper">
             <!-- Content -->
             <?php
-         include("inc/leftside.php");
-        ?>
-            
+              include("inc/leftside.php");
+            ?>
              <!-- main content starrt -->
             <div class="container-xxl flex-grow-1 container-p-y">
-          
-
             </div>
             <?php
              include("inc/navbar.php");
@@ -86,7 +76,7 @@
                     </div>
 
                     </div>
-                    <!-- <input type="file" id="imageUpload" name="image">
+                    <!-- <input type="file" id="imageUpload" name="image" required>
                       <span id="fileName"><?php echo isset($data[0]['image']) ? $data[0]['image'] : ''; ?></span> -->
                     <div >
                     <span class="details">Description</span>
@@ -103,31 +93,19 @@
 
             <div class="content-backdrop fade"></div>
           </div>
-          <!-- Content wrapper -->
+      
         </div>
-        <!-- / Layout page -->
+
       </div>
 
-      <!-- Overlay -->
+
       <div class="layout-overlay layout-menu-toggle"></div>
     </div>
-    <!-- / Layout wrapper -->
-
 
   <?php
     include("inc/footer.php");
   
-  ?>
-
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-
-  </body>
+  ?> </body>
 </html>
-<script>
-document.getElementById('imageUpload').addEventListener('change', function() {
-    var fileName = this.files[0] ? this.files[0].name : ''; // Get the file name
-    document.getElementById('fileName').textContent = fileName; // Update the span with the file name
-});
-</script>
+
 

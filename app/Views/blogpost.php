@@ -126,6 +126,7 @@
                     <div class="user__details">
                     <div class="input__box">
                         <span class="details"> Name</span>
+                        <a href="<?php echo base_url("blogs")?>">jdbej</a>
 
                         <input type="text" placeholder="E.g: John Smith" name="name"required>
                         <input type="hidden" placeholder="E.g: John Smith" name="user_id" value="<?php echo session('id')?>" >

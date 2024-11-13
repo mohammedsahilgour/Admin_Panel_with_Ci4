@@ -212,5 +212,33 @@ class login_model extends Model
         $builder->delete();
             return true ;
     }
+
+    public function save_menu_data($data){
+        // print_r($data);die;
+        $insert = $this->db->table('menu')->insert($data);
+        return $insert;
+    }
+
+    public function menu_table(){
+        $query = $this->db->query("SELECT * FROM menu  ");
+        return  $result = $query->getResult();
+    }
+
+    public function get_menu_data( $id ){
+        $query = $this->db->query("SELECT * FROM menu where id='$id' ");
+        return  $result = $query->getResult();
+    }
+
+    public function update_menu_data($data){
+        // print_r($data);
+
+        $id = $data["id"];
+        // print_r($data);die;
+        $db      = \Config\Database::connect();
+        $model= $db->table('menu ');
+        $check =   $model->where('id', $id )->set(['menu_name'=>$data['menu_name'],'menu_for'=>$data['menu_for'],'Permission'=>$data['Permission']])->update();
+ 
+        return $check;
+    }
 }
 ?>

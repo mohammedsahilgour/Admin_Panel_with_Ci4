@@ -43,6 +43,15 @@ $routes->match(['get','post'], 'newstable', 'user::newstable');
 $routes->match(['get','post'], 'editnews', 'user::editnews');
 $routes->match(['get','post'], 'updatenews', 'user::updatenews');
 $routes->match(['get','post'], 'deletenews', 'user::deletenews');
+$routes->match(['get','post'], 'menusection', 'user::menusection');
+$routes->match(['get','post'], 'savemenu', 'user::savemenu');
+$routes->match(['get','post'], 'menulist', 'user::menulist');
+$routes->match(['get','post'], 'editmenu', 'user::editmenu');
+$routes->match(['get','post'], 'updatemenu', 'user::updatemenu');
+
+
+
+
 
 
 
