@@ -1,0 +1,217 @@
+/* General Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #e2e8f0, #f7fafc);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    transition: background-color 0.3s ease; /* Smooth background transition */
+  }
+  
+  /* Container to organize layout */
+  .container {
+    display: flex;
+    gap: 30px;
+    width: 90%;
+    max-width: 1200px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    animation: fadeIn 1s ease-in-out; /* Fade-in effect for entire container */
+  }
+  
+  /* Menu Box */
+  .menu-box {
+    width: 45%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #edf2f7;
+    animation: scaleUp 0.6s ease-out; /* Menu box scale-up animation */
+    margin-left: 30%;
+  
+  }
+  
+  .menu-box .menu {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .menu-box .menu .draggable {
+    padding: 15px;
+    margin: 0;
+    background-color: #4e76f0;
+    color: white;
+    font-size: 1rem;
+    border-radius: 10px;
+    cursor: grab;
+    user-select: none;
+    font-weight: 500;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease; /* Smooth transitions */
+    animation: slideIn 0.3s ease-out; /* Draggable item slide-in animation */
+  }
+  
+  /* Hover and active state for draggable items */
+  .menu-box .menu .draggable:hover {
+    background-color: #3b62d8;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: scale(1.05); /* Slightly scale up on hover */
+  }
+  
+  .menu-box .menu .draggable:active {
+    cursor: grabbing;
+    background-color: #2f4da1;
+    transform: scale(1.1); /* Scale up when item is being dragged */
+  }
+  
+  .menu-box .menu .draggable:focus {
+    outline: none;
+  }
+  
+  /* Drop Area Box */
+  .drop-area-box {
+    width: 5%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    /* box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); */
+    /* border: 1px solid #edf2f7; */
+    animation: scaleUp 0.6s ease-out; /* Drop area scale-up animation */
+  }
+  
+  .drop-area-box .drop-area {
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #a0aec0;
+    font-size: 1.2rem;
+    text-align: center;
+    /* border: 2px dashed #cbd5e0; */
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    border-radius: 15px;
+    position: relative;
+    animation: fadeIn 1s ease-in-out; /* Fade-in effect for drop area */
+  }
+  
+  .drop-area-box .drop-area.over {
+    background-color: #f0f9ff;
+    border-color: #4e76f0;
+    color: #4e76f0;
+    box-shadow: 0 0 25px rgba(0, 123, 255, 0.3);
+    transform: scale(1.05); /* Slight scale effect on hover */
+  }
+  
+  .drop-area-box .drop-area p {
+    font-size: 1.1rem;
+    color: #999;
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+    animation: fadeInText 1s ease-in-out; /* Text fade-in effect */
+  }
+  
+  /* Animations for drag events */
+  .dragging {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+  
+  /* Role-Based Styles */
+  
+  /* Admin Role: Full access */
+  body.admin .menu-box .draggable {
+    background-color: #4e76f0; /* Admin blue */
+  }
+  
+  body.admin .menu-box .menu:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  body.admin .menu-box .draggable:active {
+    background-color: #2f4da1; /* Darker shade on drag */
+  }
+  
+  body.admin .drop-area-box .drop-area.over {
+    background-color: #f0f9ff;
+    border-color: #4e76f0;
+    color: #4e76f0;
+  }
+  
+  /* Editor Role: Can drag and drop but cannot reorder */
+  body.editor .menu-box .draggable {
+    background-color: #ffb94d; /* Editor yellow */
+  }
+  
+  body.editor .menu-box .menu {
+    pointer-events: none; /* Disable reordering */
+  }
+  
+  body.editor .menu-box .draggable {
+    cursor: move; /* Show the move cursor */
+  }
+  
+  body.editor .menu-box .draggable:hover {
+    background-color: #ff9e1b; /* Highlight hover */
+  }
+  
+  body.editor .drop-area-box .drop-area.over {
+    background-color: #fff8e1;
+    border-color: #ffb94d;
+    color: #ffb94d;
+  }
+  
+  /* Viewer Role: No drag or drop, read-only */
+  body.viewer .menu-box .draggable {
+    background-color: #e2e8f0; /* Light gray for viewers */
+    cursor: not-allowed;
+  }
+  
+  body.viewer .menu-box .draggable:hover {
+    background-color: #e2e8f0; /* No hover effect for viewers */
+  }
+  
+  body.viewer .drop-area-box .drop-area {
+    background-color: #f7fafc;
+    border-color: #e2e8f0;
+  }
+  
+  body.viewer .drop-area-box .drop-area p {
+    color: #a0aec0;
+  }
+  
+  body.viewer .menu-box .draggable {
+    cursor: not-allowed; /* Indicate no interaction */
+  }
+  
+  /* Disabled Elements for Viewer */
+  body.viewer .menu-box .draggable {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  
+  body.viewer .drop-area-box .drop-area {
+    pointer-events: none;
+  }
+  
+  /* Keyframe Animations */
+  
+  /* Fade-In animation for drop area and menu */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+}

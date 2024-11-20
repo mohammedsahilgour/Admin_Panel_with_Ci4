@@ -1,4 +1,6 @@
 <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+<script src="<?php echo base_url("assets\js\manubar.js") ?>"></script>
+
 <script src="../assets/vendor/libs/jquery/jquery.js"></script>
     <script src="../assets/vendor/libs/popper/popper.js"></script>
     <script src="../assets/vendor/js/bootstrap.js"></script>

@@ -117,51 +117,37 @@
 
             </div>
             <?php
-         include("inc/leftside.php");
-        ?>
+            include("inc/leftside.php");
+            ?>
             <div class="container" >
-            <div class="title"> Edit Menu   </div>
-<?php
-
-// print_r($data);
-
-?>
-           
-                <form action="<?php echo base_url('updatemenu')?>" method="POST" enctype="multipart/form-data">
-                    <div class="user__details">
-                    <!-- <div class="input__box"> -->
-                        <span class="details"> Menu </span>
-                        <select class="form-select" name="menu_name" aria-label="Default select example">
-                             <?php echo empty($data[0]['menu_name']) ? 'selected' : ''; ?>>Select menu</option> -->
-                            <option value="Frontend" <?php echo $data[0]['menu_name'] === 'Frontend' ? 'selected' : ''; ?>>Frontend</option>
-                            <option value="Admin" <?php echo $data[0]['menu_name'] === 'Admin' ? 'selected' : ''; ?>>Admin</option>
-                        </select>
-                          
-                    <!-- </div><br> -->
-                    <!-- <span> Menu For</span> -->
+            <div class="title"> Edit Menu   </div><br>
+               <form action="<?php echo base_url('updatemenu')?>" method="POST" enctype="multipart/form-data">
+ 
+                    <div class="form-group"cstyle="margin-top:20px">
                     <span class="details" style="margin-top:20px"> Menu For</span>
-
                     <select class="form-select" name="menu_for" aria-label="Default select example">
-                             <?php echo empty($data[0]['menu_for']) ? 'selected' : ''; ?>>Select menu</option> -->
+                             <?php echo empty($data[0]['menu_for']) ? 'selected' : ''; ?>>Select menu</option> 
                             <option value="Frontend" <?php echo $data[0]['menu_for'] === 'Frontend' ? 'selected' : ''; ?>>Frontend</option>
                             <option value="Admin" <?php echo $data[0]['menu_for'] === 'Admin' ? 'selected' : ''; ?>>Admin</option>
                         </select>
-                                    
                     </div><br>
-                      <div class="mb-3">
+                    <div class="mb-3">
                       <span> Permission</span>
 
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" value="<?php echo $data[0]["permission"]?>" name="Permission"aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        <input type="text" class="form-control" value="<?php echo $data[0]["permission"]?>" placeholder="eg:Permission`"name="Permission"aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                     </div>
-                      </div>
-                      <input type="hidden" class="form-control" value="<?php echo $data[0]["id"]?>" name="id"aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
-              
-               
+                      </div><br>
+                    <div class="form-group">
+                      <label for="exampleFormControlTextarea1">Title</label>
+                      <textarea class="form-control" name="title" id="exampleFormControlTextarea1" rows="3"><?php echo htmlspecialchars($data[0]["title"]); ?></textarea>
+                      </div><br>
+                    <input type="hidden" class="form-control" value="<?php echo $data[0]["id"]?>" name="id"aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+
                     <div class="button">
-                    <input type="submit" value="Update">
+                    <input type="submit" value="Submit">
                    
-                    </div>
+                    </div> 
                 </form>
                 </div>
         

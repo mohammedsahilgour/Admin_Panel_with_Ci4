@@ -48,6 +48,10 @@ $routes->match(['get','post'], 'savemenu', 'user::savemenu');
 $routes->match(['get','post'], 'menulist', 'user::menulist');
 $routes->match(['get','post'], 'editmenu', 'user::editmenu');
 $routes->match(['get','post'], 'updatemenu', 'user::updatemenu');
+$routes->match(['get','post'], 'deletemenudata', 'user::deletemenudata');
+$routes->match(['get','post'], 'menubar', 'user::menubar');
+$routes->match(['get','post'], 'savejsonoutput', 'user::savejsonoutput');
+
 
 
 

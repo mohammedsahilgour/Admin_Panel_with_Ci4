@@ -381,8 +381,26 @@ class user extends BaseController
         $model = new login_model();
         $model->update_menu_data($data);
         return redirect()->to('menulist'); 
+    }
 
+    public function deletemenudata(){
+        $id = $_GET['id'];
+        // echo $id ;
+        $model = new login_model();
+        $model->delete_menu_data( $id);
+        return redirect()->to('menulist'); 
+    }
 
+    public function menubar(){
+        $id = $_GET['id'];
+        return view("menubar",['id'=>$id]);
+    }
+
+    public function savejsonoutput(){
+        $data = $this->request->getPost();
+        $model = new login_model();
+        $model->save_json_output($data);
+        return redirect()->to('menulist'); 
     }
 
 }

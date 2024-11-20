@@ -120,44 +120,34 @@
          include("inc/leftside.php");
         ?>
             <div class="container" >
-            <div class="title">Menu   </div>
+            <div class="title">Menu   </div><br>
 
            
                 <form action="<?php echo base_url('savemenu')?>" method="POST" enctype="multipart/form-data">
-                    <div class="user__details">
-                    <!-- <div class="input__box"> -->
-                        <span class="details"> Menu </span>
-                        <select class="form-select"name="menu_name" aria-label="Default select example">
-                                <option selected> select menu</option>
-                                <option value="Frontend">Frontend</option>
-                                <option value="Admin">Admin</option>
-                                <!-- <option value="3">Three</option> -->
-                        </select>
-                          
-                    <!-- </div><br> -->
-                    <!-- <span> Menu For</span> -->
+        
+                    <div class="form-group"cstyle="margin-top:20px">
                     <span class="details" style="margin-top:20px"> Menu For</span>
-
                     <select class="form-select"name="menu_for" aria-label="Default select example">
                         <option selected > select menu For </option>
                         <option value="Frontend" name="menufor">Frontend</option>
                         <option value="Admin"  name="menufor">Admin</option>
                     </select>
-                                    
                     </div><br>
-                      <div class="mb-3">
+                    <div class="mb-3">
                       <span> Permission</span>
 
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="eg:Permission"name="Permission"aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        <input type="text" class="form-control" placeholder="eg:Permission`"name="Permission"aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                     </div>
-                      </div>
-              
-               
+                      </div><br>
+                    <div class="form-group">
+                      <label for="exampleFormControlTextarea1">Title</label>
+                      <textarea class="form-control" name="title" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div><br>
                     <div class="button">
                     <input type="submit" value="Submit">
                    
-                    </div>
+                    </div> 
                 </form>
                 </div>
         

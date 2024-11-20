@@ -220,7 +220,7 @@ class login_model extends Model
     }
 
     public function menu_table(){
-        $query = $this->db->query("SELECT * FROM menu  ");
+        $query = $this->db->query("SELECT * FROM menu");
         return  $result = $query->getResult();
     }
 
@@ -235,9 +235,25 @@ class login_model extends Model
         $id = $data["id"];
         // print_r($data);die;
         $db      = \Config\Database::connect();
-        $model= $db->table('menu ');
-        $check =   $model->where('id', $id )->set(['menu_name'=>$data['menu_name'],'menu_for'=>$data['menu_for'],'Permission'=>$data['Permission']])->update();
- 
+        $model= $db->table('menu');
+        $check =   $model->where('id', $id )->set(['title'=>$data['title'],'menu_for'=>$data['menu_for'],'Permission'=>$data['Permission']])->update();
+        return $check;
+    }
+
+    public function delete_menu_data($id){
+
+        $builder = $this->db->table('menu');
+        $builder->where('id', $id);
+        $builder->delete();
+            return true ;
+    }
+
+    public function save_json_output($data){
+        $id = $data["id"];
+        // print_r($id);die;
+        $db      = \Config\Database::connect();
+        $model= $db->table('menu');
+        $check =   $model->where('id', $id )->set(['json_output	'=>$data['jsonoutput']])->update();
         return $check;
     }
 }
