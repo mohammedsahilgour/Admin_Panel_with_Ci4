@@ -124,11 +124,6 @@
               </ul>
             </div>
           </nav>
-             <!-- main content starrt -->
-            <!-- <div class="container-xxl flex-grow-1 container-p-y">
-          
-
-            </div> -->
             <?php
          include("inc/leftside.php");
         ?>
@@ -138,7 +133,10 @@
 </ul>
 <div class="card border-primary mb-3">
     <div class="card-header bg-primary text-white">Edit item</div>
+   <?php
+  //  print_r($leftsidebar);
    
+   ?>
         <div class="card-body">
         <form id="frmEdit" class="form-horizontal">
         <div class="form-group">
@@ -167,6 +165,10 @@
         <label for="title">Title</label>
         <input type="text" name="title" class="form-control item-menu" id="title" placeholder="Title">
         </div>
+        <div class="form-group">
+        <label for="title">Permission </label>
+        <input type="text" name="Permission" class="form-control item-menu" id="Permission" placeholder="Permission">
+        </div>
         </form>
         </div>
     <div class="card-footer">
@@ -174,12 +176,15 @@
         <button type="button" id="btnAdd" class="btn btn-success"><i class="fas fa-plus"></i> Add</button>
     </div>
 </div>
+
 <div class="output-section">
             <h3>Generated Menu JSON</h3>
             <form action="<?php echo base_url("savejsonoutput")?>" method="POST">
 
             <button type="button" id="outputbtn" class="btn btn-success">Output </button><br><br>
-            <textarea id="myTextarea" class="form-control" rows="8" name="jsonoutput" readonly></textarea>
+            <!-- <button type="button" id="remove" class="btn btn-danger">remove </button> -->
+            <br><br>
+            <textarea id="myTextarea" class="form-control" rows="8" name="jsonoutput" readonly required></textarea>
             <input type="hidden" name="id" value="<?php echo $id ?>"><br>
             <input type="submit" value="save"class="btn btn-primary">
             </form>
@@ -276,7 +281,14 @@ var editor = new MenuEditor('myEditor',
 		]
 	}
 ]
-var arrayjson = [{"href":"http://home.com","icon":"fas fa-home","text":"Home", "target": "_top", "title": "My Home"},{"icon":"fas fa-chart-bar","text":"Opcion2","title":"option2"},{"icon":"fas fa-bell","text":"Opcion3"},{"icon":"fas fa-crop","text":"Permission","title":"permission title"},{"icon":"fas fa-flask","text":"Opcion5"},{"icon":"fas fa-map-marker","text":"Opcion6"},{"icon":"fas fa-search","text":"Opcion7","children":[{"icon":"fas fa-plug","text":"Opcion7-1","children":[{"icon":"fas fa-filter","text":"Opcion7-1-1"}]}]}];
+var arrayjson = [{"href":"localhost:8080/userblogs","icon":"fas fa-home","text":"blogs", "target": "_top", "title": "Userblogs"},
+{"href":"localhost:8080/userblogs","icon":"fas fa-home","text":"menu", "target": "_top", "title": "menu"},
+
+{"href":"http://localhost:8080/companysection","title":"company setting","icon":"fas fa-bell","text":"company setting"},
+{"href":"http://localhost:8080/newstable","icon":"fas fa-crop","text":"news","title":"news"},
+{"href":"http://localhost:8080/pagetable","icon":"fas fa-flask","text":"pages","title":"pages"},
+{"href":"http://localhost:8080/usersection","icon":"fas fa-home","text":"user", "target": "_top", "title": "user"},
+{"icon":"fas fa-search","text":"Add","children":[{"icon":"fas fa-plug","text":"default","children":[{"icon":"fas fa-filter","text":"Opcion7-1-1"}]}]}];
 editor.setData(arrayjson);
 // var str = editor.getString();
 // console.log(str)
@@ -284,6 +296,13 @@ $("#outputbtn").click(function(){
     var str = editor.getString();
     $("#myTextarea").text(str);
     // console.log(str)
+})
+
+$("#remove").click(function(){
+  var str ="";
+
+  $("#myTextarea").text(str);
+
 })
 
 </script>

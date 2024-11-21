@@ -138,10 +138,10 @@
                         <input type="text" class="form-control" value="<?php echo $data[0]["permission"]?>" placeholder="eg:Permission`"name="Permission"aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                     </div>
                       </div><br>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                       <label for="exampleFormControlTextarea1">Title</label>
                       <textarea class="form-control" name="title" id="exampleFormControlTextarea1" rows="3"><?php echo htmlspecialchars($data[0]["title"]); ?></textarea>
-                      </div><br>
+                      </div><br> -->
                     <input type="hidden" class="form-control" value="<?php echo $data[0]["id"]?>" name="id"aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 
                     <div class="button">

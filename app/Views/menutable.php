@@ -62,7 +62,7 @@ h1.fourth span:first-child {
           <tbody>
             <tr>
               <th> s.no</th>
-              <th>Title</th>
+              <!-- <th>Title</th> -->
               <th>Menu For</th>
               <th>Permission</th>
               <th colspan='3'>Action </th>
@@ -73,9 +73,9 @@ h1.fourth span:first-child {
               <td data-th="Supplier Code">
                 <?php  echo $count ++?>
               </td>
-              <td data-th="name">
+              <!-- <td data-th="name">
                 <?php echo $user_data['title'] ?>
-              </td>
+              </td> -->
               <td data-th="date">
                 <?php echo $user_data['menu_for'] ?>
               </td>

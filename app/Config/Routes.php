@@ -54,12 +54,6 @@ $routes->match(['get','post'], 'savejsonoutput', 'user::savejsonoutput');
 
 
 
-
-
-
-
-
-
 // website controller 
 $routes->match(['get','post'], 'blogs', 'website_cont::blogs');
 $routes->match(['get','post'], 'contactus', 'website_cont::contactus');

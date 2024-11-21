@@ -121,8 +121,15 @@ class user extends BaseController
     public function userblogs(){
         $model = new login_model();
        $data =  $model->select_user_data();
-      
-      return view('userblog' , ['data'=> $data]);
+
+       $leftsidebar =  $model->select_leftside_bar();
+       $leftsidebar=json_decode(json_encode($leftsidebar),true);
+    //    $check = $leftsidebar[0]['json_output'];
+    //    $check=json_decode(json_encode($check),true);
+
+    //    print_r(  $check );die;
+        view('inc/leftside' , ['leftsidebar'=> $leftsidebar]);
+         return view('userblog' , ['data'=> $data]);
     }
     public function editblog(){
        
@@ -172,6 +179,9 @@ class user extends BaseController
         $data =  $model->select_user();
         // print_r($data);
         // die;
+        $leftsidebar =  $model->select_leftside_bar();
+        $leftsidebar=json_decode(json_encode($leftsidebar),true);
+         view('inc/leftside' , ['leftsidebar'=> $leftsidebar]);
         return view('usertable' , ['data'=> $data]);
       
     }
@@ -204,6 +214,9 @@ class user extends BaseController
       $id = session('id');
       $model = new login_model();
     $data =   $model->get_profile_data( $id );
+    $leftsidebar =  $model->select_leftside_bar();
+    $leftsidebar=json_decode(json_encode($leftsidebar),true);
+     view('inc/leftside' , ['leftsidebar'=> $leftsidebar]);
     return view('myprofile',['data' => $data]);
     }
     
@@ -212,11 +225,19 @@ class user extends BaseController
      
       $model = new login_model();
       $model->update_profile_data( $data );
+      $leftsidebar =  $model->select_leftside_bar();
+      $leftsidebar=json_decode(json_encode($leftsidebar),true);
+       view('inc/leftside' , ['leftsidebar'=> $leftsidebar]);
       return redirect()->to('myprofile'); 
 
     }
 
     public function companysection(){
+        $model = new login_model();
+
+        $leftsidebar =  $model->select_leftside_bar();
+        $leftsidebar=json_decode(json_encode($leftsidebar),true);
+         view('inc/leftside' , ['leftsidebar'=> $leftsidebar]);
 
         $model = new login_model();
       $data =   $model->get_company_data();
@@ -236,12 +257,20 @@ class user extends BaseController
     }
 
     public function pagesform(){
+     $model = new login_model();
+
+        $leftsidebar =  $model->select_leftside_bar();
+        $leftsidebar=json_decode(json_encode($leftsidebar),true);
+         view('inc/leftside' , ['leftsidebar'=> $leftsidebar]);
         return view('pagesform');
     }
 
     public function insertpagesdata(){
      $data = $this->request->getPost();
     $model = new login_model();
+    $leftsidebar =  $model->select_leftside_bar();
+    $leftsidebar=json_decode(json_encode($leftsidebar),true);
+     view('inc/leftside' , ['leftsidebar'=> $leftsidebar]);
     $model->insert_pages_data($data);
     return redirect()->to('pagesform'); 
     
@@ -249,6 +278,9 @@ class user extends BaseController
 
     public function pagetable(){
         $model = new login_model();
+        $leftsidebar =  $model->select_leftside_bar();
+        $leftsidebar=json_decode(json_encode($leftsidebar),true);
+         view('inc/leftside' , ['leftsidebar'=> $leftsidebar]); 
       $data =  $model->get_pages_data();
       $data=json_decode(json_encode($data),true);
     return view('pagetable',['data'=>$data]);
@@ -279,11 +311,20 @@ class user extends BaseController
     }
     
     public function newspost(){
+        $model = new login_model();
+
+        $leftsidebar =  $model->select_leftside_bar();
+        $leftsidebar=json_decode(json_encode($leftsidebar),true);
+        view('inc/leftside' , ['leftsidebar'=> $leftsidebar]);
+
         return view("newspost");
     }
 
     public function newssave(){
-       
+        $model = new login_model();
+
+        $leftsidebar =  $model->select_leftside_bar();
+        $leftsidebar=json_decode(json_encode($leftsidebar),true);
         $newsdata = $this->request->getPost();
         $blogfile= $this->request->getFile("image");
         $f = $blogfile->getClientName();
@@ -300,11 +341,15 @@ class user extends BaseController
          'description' => 'required',
  
         ])){
+         view('inc/leftside' , ['leftsidebar'=> $leftsidebar]);
+
          return view('newspost');
  
         }else{
             $model = new login_model();
             $data =  $model->save_news_data($newsdata,$filename);
+         view('inc/leftside' , ['leftsidebar'=> $leftsidebar]);
+
             return redirect()->to('newspost'); 
         }
     }
@@ -312,11 +357,15 @@ class user extends BaseController
     public function newstable(){
         // echo "scec";die;
         $model = new login_model();
+        $leftsidebar =  $model->select_leftside_bar();
+        $leftsidebar=json_decode(json_encode($leftsidebar),true);
        $data =  $model->news_table_data();
       $data=json_decode(json_encode($data),true);
 
     //    print_r($data);
     //    die;
+    view('inc/leftside' , ['leftsidebar'=> $leftsidebar]);
+
         return view("newstable",["data" => $data]);
     }
 
@@ -344,10 +393,22 @@ class user extends BaseController
     }
 
     public function menusection(){
+        $model = new login_model();
+
+        $leftsidebar =  $model->select_leftside_bar();
+        $leftsidebar=json_decode(json_encode($leftsidebar),true);
+        view('inc/leftside' , ['leftsidebar'=> $leftsidebar]);
+
         return view("menusection");
     }
 
     public function savemenu(){
+        $model = new login_model();
+
+        $leftsidebar =  $model->select_leftside_bar();
+        $leftsidebar=json_decode(json_encode($leftsidebar),true);
+        view('inc/leftside' , ['leftsidebar'=> $leftsidebar]);
+
      
        $data = $this->request->getPost();
         $model = new login_model();
@@ -358,6 +419,12 @@ class user extends BaseController
 
     public function menulist(){
         $model = new login_model();
+     
+
+        $leftsidebar =  $model->select_leftside_bar();
+        $leftsidebar=json_decode(json_encode($leftsidebar),true);
+        view('inc/leftside' , ['leftsidebar'=> $leftsidebar]);
+
        $data =  $model->menu_table();
        $data=json_decode(json_encode($data),true);
 
@@ -369,6 +436,11 @@ class user extends BaseController
         $id = $_GET['id'];
         // echo $id ; die;
         $model = new login_model();
+
+        $leftsidebar =  $model->select_leftside_bar();
+        $leftsidebar=json_decode(json_encode($leftsidebar),true);
+        view('inc/leftside' , ['leftsidebar'=> $leftsidebar]);
+
         $data = $model->get_menu_data( $id );
         $data=json_decode(json_encode($data),true);
         // print_r($data);die;
@@ -392,14 +464,21 @@ class user extends BaseController
     }
 
     public function menubar(){
+        $model = new login_model();
+
+        $leftsidebar =  $model->select_leftside_bar();
+        $leftsidebar=json_decode(json_encode($leftsidebar),true);
+        view('inc/leftside' , ['leftsidebar'=> $leftsidebar]);
+
         $id = $_GET['id'];
-        return view("menubar",['id'=>$id]);
+        return view("menubar",['id'=>$id ,"leftsidebar"=>$leftsidebar]);
     }
 
     public function savejsonoutput(){
         $data = $this->request->getPost();
         $model = new login_model();
         $model->save_json_output($data);
+        
         return redirect()->to('menulist'); 
     }
 

@@ -140,10 +140,10 @@
                         <input type="text" class="form-control" placeholder="eg:Permission`"name="Permission"aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                     </div>
                       </div><br>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                       <label for="exampleFormControlTextarea1">Title</label>
                       <textarea class="form-control" name="title" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div><br>
+                    </div><br> -->
                     <div class="button">
                     <input type="submit" value="Submit">
                    
