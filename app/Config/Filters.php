@@ -1,6 +1,7 @@
 <?php
 
 namespace Config;
+// namespace App\Filters;
 
 use CodeIgniter\Config\Filters as BaseFilters;
 use CodeIgniter\Filters\Cors;
@@ -12,6 +13,9 @@ use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\PageCache;
 use CodeIgniter\Filters\PerformanceMetrics;
 use CodeIgniter\Filters\SecureHeaders;
+// use CodeIgniter\Filters\SecureHeaders;
+
+
 
 class Filters extends BaseFilters
 {
@@ -34,8 +38,9 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+        'menu' => \App\Filters\MenuFilter::class,
     ];
-
+ 
     /**
      * List of special required filters.
      *
@@ -67,18 +72,12 @@ class Filters extends BaseFilters
      *
      * @var array<string, array<string, array<string, string>>>|array<string, list<string>>
      */
-    public array $globals = [
-        'before' => [
-            // 'honeypot',
-            // 'csrf',
-            // 'invalidchars',
-        ],
-        'after' => [
-            // 'honeypot',
-            // 'secureheaders',
-        ],
-    ];
-
+ public  array $globals = [
+    'before' => [
+        'menu', // Ensure 'menu' is added here
+    ],
+    'after' => [],
+];
     /**
      * List of filter aliases that works on a
      * particular HTTP method (GET, POST, etc.).

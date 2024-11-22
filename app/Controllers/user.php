@@ -121,14 +121,6 @@ class user extends BaseController
     public function userblogs(){
         $model = new login_model();
        $data =  $model->select_user_data();
-
-       $leftsidebar =  $model->select_leftside_bar();
-       $leftsidebar=json_decode(json_encode($leftsidebar),true);
-    //    $check = $leftsidebar[0]['json_output'];
-    //    $check=json_decode(json_encode($check),true);
-
-    //    print_r(  $check );die;
-        view('inc/leftside' , ['leftsidebar'=> $leftsidebar]);
          return view('userblog' , ['data'=> $data]);
     }
     public function editblog(){
@@ -408,9 +400,7 @@ class user extends BaseController
         $leftsidebar =  $model->select_leftside_bar();
         $leftsidebar=json_decode(json_encode($leftsidebar),true);
         view('inc/leftside' , ['leftsidebar'=> $leftsidebar]);
-
-     
-       $data = $this->request->getPost();
+        $data = $this->request->getPost();
         $model = new login_model();
         $model->save_menu_data($data );
         return redirect()->to('menusection'); 
@@ -419,17 +409,9 @@ class user extends BaseController
 
     public function menulist(){
         $model = new login_model();
-     
-
-        $leftsidebar =  $model->select_leftside_bar();
-        $leftsidebar=json_decode(json_encode($leftsidebar),true);
-        view('inc/leftside' , ['leftsidebar'=> $leftsidebar]);
-
-       $data =  $model->menu_table();
-       $data=json_decode(json_encode($data),true);
-
-       return view("menutable",['data'=>$data]);
-
+        $data =  $model->menu_table();
+        $data=json_decode(json_encode($data),true);
+        return view("menutable",['data'=>$data]);
     }
 
     public function editmenu(){
@@ -469,7 +451,6 @@ class user extends BaseController
         $leftsidebar =  $model->select_leftside_bar();
         $leftsidebar=json_decode(json_encode($leftsidebar),true);
         view('inc/leftside' , ['leftsidebar'=> $leftsidebar]);
-
         $id = $_GET['id'];
         return view("menubar",['id'=>$id ,"leftsidebar"=>$leftsidebar]);
     }
@@ -478,7 +459,8 @@ class user extends BaseController
         $data = $this->request->getPost();
         $model = new login_model();
         $model->save_json_output($data);
-        
+       
+
         return redirect()->to('menulist'); 
     }
 

@@ -16,7 +16,7 @@
     border-radius: .25rem;
     width: 32%;
     /* margin-left: 30px; */
-    margin-top: 100px;
+    margin-top: 130px;
 }
 
 .border-primary {
@@ -281,14 +281,14 @@ var editor = new MenuEditor('myEditor',
 		]
 	}
 ]
-var arrayjson = [{"href":"localhost:8080/userblogs","icon":"fas fa-home","text":"blogs", "target": "_top", "title": "Userblogs"},
-{"href":"localhost:8080/userblogs","icon":"fas fa-home","text":"menu", "target": "_top", "title": "menu"},
-
-{"href":"http://localhost:8080/companysection","title":"company setting","icon":"fas fa-bell","text":"company setting"},
-{"href":"http://localhost:8080/newstable","icon":"fas fa-crop","text":"news","title":"news"},
-{"href":"http://localhost:8080/pagetable","icon":"fas fa-flask","text":"pages","title":"pages"},
-{"href":"http://localhost:8080/usersection","icon":"fas fa-home","text":"user", "target": "_top", "title": "user"},
-{"icon":"fas fa-search","text":"Add","children":[{"icon":"fas fa-plug","text":"default","children":[{"icon":"fas fa-filter","text":"Opcion7-1-1"}]}]}];
+var arrayjson = 
+[{"href":"userblogs","icon":"fas fa-blog","text":"blogs", "target": "_top", "title": "Userblogs"},
+{"href":"menulist","icon":"fas fa-bars","text":"menu", "target": "_top", "title": "menu"},
+{"href":"companysection","title":"company setting","icon":"fas fa-cog","text":"company setting"},
+{"href":"newstable","icon":"fas fa-newspaper","text":"news","title":"news"},
+{"href":"pagetable","icon":"ffas fa-file-alt","text":"pages","title":"pages"},
+{"href":"usersection","icon":"fas fa-user","text":"user", "target": "_top", "title": "user"},
+{"iconn":"fas fa-search","textt":"Add","children":[{"iconn":"fas fa-plug","text":"default","children":[{"iconn":"fas fa-filter","text":"Opcion7-1-1"}]}]}];
 editor.setData(arrayjson);
 // var str = editor.getString();
 // console.log(str)
