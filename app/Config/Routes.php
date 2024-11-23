@@ -51,6 +51,8 @@ $routes->match(['get','post'], 'updatemenu', 'user::updatemenu');
 $routes->match(['get','post'], 'deletemenudata', 'user::deletemenudata');
 $routes->match(['get','post'], 'menubar', 'user::menubar');
 $routes->match(['get','post'], 'savejsonoutput', 'user::savejsonoutput');
+$routes->match(['get','post'], 'savesidebarmenu', 'user::savesidebarmenu');
+
 
 
 

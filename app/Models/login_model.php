@@ -257,5 +257,14 @@ class login_model extends Model
         $query = $this->db->query("SELECT * FROM menu where id='16'");
         return  $result = $query->getRowArray();
     }
+    public function select_menu_bar_data(){
+        $query = $this->db->query("SELECT * FROM leftsidebar");
+      return  $result = $query->getResultArray();
+
+    }
+    public function save_sidebar_menu($data){
+        $insert = $this->db->table('leftsidebar')->insert($data);
+        return $insert;
+    }
 }
 ?>

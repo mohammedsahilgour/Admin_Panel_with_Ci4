@@ -447,21 +447,36 @@ class user extends BaseController
 
     public function menubar(){
         $model = new login_model();
-
-        $leftsidebar =  $model->select_leftside_bar();
-        $leftsidebar=json_decode(json_encode($leftsidebar),true);
-        view('inc/leftside' , ['leftsidebar'=> $leftsidebar]);
+       $menudata =  $model->select_menu_bar_data();
+       $menudata=json_decode(json_encode($menudata),true);
         $id = $_GET['id'];
-        return view("menubar",['id'=>$id ,"leftsidebar"=>$leftsidebar]);
+        return view("menubar",['id'=>$id,"menudata"=>$menudata]);
     }
 
     public function savejsonoutput(){
         $data = $this->request->getPost();
         $model = new login_model();
         $model->save_json_output($data);
-       
-
         return redirect()->to('menulist'); 
+    }
+    public function savesidebarmenu(){
+     
+        $getdata = $this->request->getPost();
+        $id = $getdata['id'];
+
+        $data =[
+            'name'=>$getdata['name'],
+            'icon'=>$getdata['icon'],
+            'href'=>$getdata['href'],
+            'target'=>$getdata['target'],
+            'title'=>$getdata['title'],
+            'Permission'=>$getdata['Permission'],
+
+        ];
+
+        $model = new login_model();
+        $model->save_sidebar_menu($data);
+        return redirect()->to('menubar?id=' . $id);
     }
 
 }

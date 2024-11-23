@@ -16,7 +16,7 @@
     border-radius: .25rem;
     width: 32%;
     /* margin-left: 30px; */
-    margin-top: 130px;
+    margin-top: 200px;
 }
 
 .border-primary {
@@ -134,20 +134,23 @@
 <div class="card border-primary mb-3">
     <div class="card-header bg-primary text-white">Edit item</div>
    <?php
-  //  print_r($leftsidebar);
+   
+   
+  
    
    ?>
+ 
         <div class="card-body">
-        <form id="frmEdit" class="form-horizontal">
+        <form id="frmEdit" class="form-horizontal" method="POST" action="<?php echo base_url("savesidebarmenu")?>">
         <div class="form-group">
         <label for="text">Text</label>
         <div class="input-group">
-        <input type="text" class="form-control item-menu" name="text" id="text" placeholder="Text">
+        <input type="text" class="form-control item-menu" name="name" id="text" placeholder="Text">
         <div class="input-group-append">
         <button type="button" id="myEditor_icon" class="btn btn-outline-secondary"></button>
         </div>
         </div>
-        <input type="hidden" name="icon" class="item-menu">
+        <input type="hidden" name="icon"  value="fas fa-blog"class="item-menu">
         </div>
         <div class="form-group">
         <label for="href">URL</label>
@@ -164,17 +167,20 @@
         <div class="form-group">
         <label for="title">Title</label>
         <input type="text" name="title" class="form-control item-menu" id="title" placeholder="Title">
+        <input type="hidden" name="id" value="<?php echo $id ?>">
         </div>
         <div class="form-group">
         <label for="title">Permission </label>
         <input type="text" name="Permission" class="form-control item-menu" id="Permission" placeholder="Permission">
         </div>
+        <div class="card-footer">
+        <button type="submit"class="btn btn-success"><i class="fas fa-plus"></i> Add</button>
+       </div>
         </form>
-        </div>
-    <div class="card-footer">
+        <div class="card-footer">
         <button type="button" id="btnUpdate" class="btn btn-primary" disabled><i class="fas fa-sync-alt"></i> Update</button>
-        <button type="button" id="btnAdd" class="btn btn-success"><i class="fas fa-plus"></i> Add</button>
-    </div>
+       </div>
+        </div>
 </div>
 
 <div class="output-section">
@@ -184,11 +190,10 @@
             <button type="button" id="outputbtn" class="btn btn-success">Output </button><br><br>
             <!-- <button type="button" id="remove" class="btn btn-danger">remove </button> -->
             <br><br>
-            <textarea id="myTextarea" class="form-control" rows="8" name="jsonoutput" readonly required></textarea>
+            <textarea id="myTextarea" class="form-control" rows="8" name="jsonoutput"  required></textarea>
             <input type="hidden" name="id" value="<?php echo $id ?>"><br>
             <input type="submit" value="save"class="btn btn-primary">
             </form>
-        
         </div>
 </div>
 
@@ -281,17 +286,38 @@ var editor = new MenuEditor('myEditor',
 		]
 	}
 ]
-var arrayjson = 
-[{"href":"userblogs","icon":"fas fa-blog","text":"blogs", "target": "_top", "title": "Userblogs"},
-{"href":"menulist","icon":"fas fa-bars","text":"menu", "target": "_top", "title": "menu"},
-{"href":"companysection","title":"company setting","icon":"fas fa-cog","text":"company setting"},
-{"href":"newstable","icon":"fas fa-newspaper","text":"news","title":"news"},
-{"href":"pagetable","icon":"ffas fa-file-alt","text":"pages","title":"pages"},
-{"href":"usersection","icon":"fas fa-user","text":"user", "target": "_top", "title": "user"},
-{"iconn":"fas fa-search","textt":"Add","children":[{"iconn":"fas fa-plug","text":"default","children":[{"iconn":"fas fa-filter","text":"Opcion7-1-1"}]}]}];
-editor.setData(arrayjson);
-// var str = editor.getString();
-// console.log(str)
+var arrayjson = [
+        <?php foreach($menudata as $data): ?>
+        {
+            "href": "<?php echo $data['href']; ?>",
+            "icon": "<?php echo $data['icon']; ?>",
+            "text": "<?php echo $data['name']; ?>",
+            "target": "<?php echo $data['target']; ?>",
+            "title": "<?php echo $data['title']; ?>"
+        },
+        <?php endforeach; ?>
+        // Add your static object here
+        {
+            "iconn": "fas fa-search",
+            "textt": "Add",
+            "children": [
+                {
+                    "iconn": "fas fa-plug",
+                    "text": "default",
+                    "children": [
+                        {
+                            "iconn": "fas fa-filter",
+                            "text": "Opcion7-1-1"
+                        }
+                    ]
+                }
+            ]
+        }
+    ];
+
+    // Initialize the editor with the updated array
+    editor.setData(arrayjson);
+
 $("#outputbtn").click(function(){
     var str = editor.getString();
     $("#myTextarea").text(str);
