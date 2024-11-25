@@ -7,11 +7,13 @@
       <style>
     /* ------------------- */
 
-
+.fourth{
+  margin-top:100px;
+}
 h1.fourth { 
 	font-weight: 700;
     margin-left:-900px;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
 }
 
 h1.fourth span {
@@ -68,19 +70,19 @@ h1.fourth span:first-child {
     ?>  
     	<h1 class="fourth " style='color:blue'><span>User</span><span>Blogs</span></h1>
       <div class="add-more-btn"  style="margin-left:100px">
-    <a href="<?php echo base_url('blogpost')?>" class="btn btn-outline-primary">Add Blogs </a>
+    <a href="<?php echo base_url('blogpost')?>" style="margin-top:-80px"class="btn btn-outline-primary">Add Blogs </a>
     
     </div>
   <table class="rwd-table">
     <tbody>
       <tr>
         <th> s.no</th>
-        <th>Name</th>
+        <th> Author Name</th>
         <th>Date</th>
         <th>Image</th>
 
         <th>Title</th>
-        <th>Contact</th>
+        <th>Category for</th>
         <th colspan='2'>Action </th>
       
       </tr>
@@ -113,7 +115,7 @@ h1.fourth span:first-child {
 
         </td>
         <td data-th="Invoice Date">
-        <?php echo $user_data['number'] ?>
+        <?php echo $user_data['category_for'] ?>
 
         </td>
         <td data-th="Due Date">

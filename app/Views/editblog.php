@@ -29,7 +29,7 @@
                 <form action="<?php echo base_url('updateblog')?>" method="POST">
                     <div class="user__details">
                     <div class="input__box">
-                        <span class="details"> Name</span>
+                        <span class="details">Author  Name</span>
                         <input type="text" placeholder="E.g: John Smith" name="name" value="<?php echo $data[0]['name'] ?>"required>
                         <input type="hidden" placeholder="E.g: John Smith" name="id" value="<?php echo $data[0]['id'] ?>" >
 
@@ -79,6 +79,14 @@
                     <!-- <input type="file" id="imageUpload" name="image" required>
                       <span id="fileName"><?php echo isset($data[0]['image']) ? $data[0]['image'] : ''; ?></span> -->
                     <div >
+                    <label for="">Category for</label>
+                    <select class="form-select" name="category_for" aria-label="Default select example">
+                        <option selected>Select Category</option>
+                        <option value="Health" <?php echo $data[0]['category_for'] === 'Health' ? 'selected' : ''; ?>>Health</option>
+                        <option value="Education" <?php echo $data[0]['category_for'] === 'Education' ? 'selected' : ''; ?>>Education</option>
+                    </select>
+                    <br>
+
                     <span class="details">Description</span>
                         <input type="text"class="input__box_phone" value="<?php echo $data[0]['description'] ?>"name="description" placeholder="" required>
                     </div>

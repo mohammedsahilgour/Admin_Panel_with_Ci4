@@ -20,7 +20,7 @@
        
             <!-- Navbar -->
              
-            <nav
+            <nav style="margin-top:10px"
             class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
             id="layout-navbar"
           >
@@ -119,19 +119,16 @@
             <?php
          include("inc/leftside.php");
         ?>
-            <div class="container">
-                <div class="title">Blog Post </div>
+            <div class="container" style="margin-top:200px">
+                <div class="title">Blog Post </div>    <a href="<?php echo base_url("blogs")?>">jdbej</a>
            
                 <form action="<?php echo base_url('insertblogpost')?>" method="POST" enctype="multipart/form-data">
                     <div class="user__details">
                     <div class="input__box">
-                        <span class="details"> Name</span>
-                        <a href="<?php echo base_url("blogs")?>">jdbej</a>
-
-                        <input type="text" placeholder="E.g: John Smith" name="name"required>
-                        <input type="hidden" placeholder="E.g: John Smith" name="user_id" value="<?php echo session('id')?>" >
-
+                        <span class="details">Title</span>
+                        <input type="text" placeholder="Title" name="title"required>
                     </div>
+                
                     <div class="input__box">
                         <span class="details">Date</span>
                         <input type="date" placeholder="johnWC98"name="date" required>
@@ -145,8 +142,12 @@
                         <input type="tel"  placeholder="012-345-6789" name="number"required>
                     </div>
                     <div class="input__box">
-                        <span class="details">Title</span>
-                        <input type="text" placeholder="Title" name="title"required>
+                        <span class="details">Author Name</span>
+                    
+
+                        <input type="text" placeholder="E.g: John Smith" name="name"required>
+                        <input type="hidden" placeholder="E.g: John Smith" name="user_id" value="<?php echo session('id')?>" >
+
                     </div>
                     <div class="input__box">
                     <div class="gender__details">
@@ -174,6 +175,13 @@
                     </div>
 
                     </div>
+                    <label for="">Category for</label>
+                    <select class="form-select"name="category_for" aria-label="Default select example">
+                      <option selected > select Category</option>
+                      <option value="Health">Health</option>
+                      <option value="Education">Education</option>
+                      <!-- <option value="3">Three</option> -->
+                    </select><br>
                       <div class="mb-3">
                           <label for="formFileDisabled" class="form-label">Blog Image </label>
                           <input class="form-control" type="file" name="image"id="formFileDisabled" >

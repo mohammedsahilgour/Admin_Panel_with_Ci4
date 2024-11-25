@@ -21,6 +21,8 @@ class login_model extends Model
             'gender' => $blogdata["gender"] ,
             'description' => $blogdata["description"],
             'user_id' => $blogdata["user_id"],
+            'category_for' => $blogdata["category_for"],
+
 
         ];
         // print_r($blogdata);die;
@@ -51,7 +53,7 @@ class login_model extends Model
      $db      = \Config\Database::connect();
         $model= $db->table('blog');
       $check =   $model->where('id', $id )->set(['name'=>$data['name'],'date'=>$data['date'],'email'=>$data['email'],
-      'title'=>$data['title'],'gender'=>$data['gender'],'description'=>$data['description'],'number'=>$data['number']])->update();
+      'title'=>$data['title'],'gender'=>$data['gender'],'description'=>$data['description'],'category_for'=>$data['category_for'],'number'=>$data['number']])->update();
  
         return $check;
     
@@ -257,9 +259,9 @@ class login_model extends Model
         $query = $this->db->query("SELECT * FROM menu where id='16'");
         return  $result = $query->getRowArray();
     }
-    public function select_menu_bar_data(){
-        $query = $this->db->query("SELECT * FROM leftsidebar");
-      return  $result = $query->getResultArray();
+    public function select_menu_bar_data($id){
+        $query = $this->db->query("SELECT * FROM menu where id='$id' ");
+        return  $result = $query->getRowArray();
 
     }
     public function save_sidebar_menu($data){

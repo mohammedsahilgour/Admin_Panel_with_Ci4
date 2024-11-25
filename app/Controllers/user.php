@@ -3,6 +3,8 @@
 namespace App\Controllers;
  use App\models\user_model;
  use App\models\login_model;
+ use App\models\MenuModel;
+
 
 
 class user extends BaseController
@@ -86,6 +88,7 @@ class user extends BaseController
     // store blog
     public function insertblogpost(){
        $blogdata = $this->request->getPost();
+    //    print_r($blogdata);die;
        $blogfile= $this->request->getFile("image");
        $f = $blogfile->getClientName();
        $filename = str_replace(" ","",$f);
@@ -446,10 +449,14 @@ class user extends BaseController
     }
 
     public function menubar(){
-        $model = new login_model();
-       $menudata =  $model->select_menu_bar_data();
-       $menudata=json_decode(json_encode($menudata),true);
         $id = $_GET['id'];
+        // print_r($id);die;
+        $model = new login_model();
+       $menudata =  $model->select_menu_bar_data($id);
+       $menudata=json_decode(json_encode($menudata),true);
+        // $menuModel = new MenuModel();
+        // $menudata = $menuModel->getMenu();
+
         return view("menubar",['id'=>$id,"menudata"=>$menudata]);
     }
 

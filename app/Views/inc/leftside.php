@@ -1,5 +1,139 @@
 
+<style>
+/* Basic menu item styling *//* Basic menu item styling */
+/* General menu styling */
+/* General Menu Styling */
+/* General Menu Styling */
+/* General Menu Styling */
+.menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 250px; /* Set width for the vertical menu */
+    background: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    border:"none";
+}
 
+/* Parent Menu Item */
+.menu-item {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    border:"none";
+
+}
+
+/* Menu Link */
+.menu-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    padding: 15px 20px;
+    background: #ffffff;
+    /* border-bottom: 1px solid #ddd; */
+    transition: background 0.3s;
+}
+
+.menu-link:hover {
+    background: #e2e6ea;
+}
+
+/* Submenu Toggle (Hidden Checkbox) */
+.submenu-toggle {
+    display: none;
+}
+
+/* Submenu Label */
+.submenu-label {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #555;
+    background: #ffffff;
+    /* border-bottom: 1px solid #ddd; */
+    transition: background 0.3s;
+}
+
+.submenu-label:hover {
+    background: #f1f1f1;
+}
+
+/* Submenu Container */
+.submenu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 0; /* Initially collapsed */
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.5s ease; /* Smooth expand/collapse */
+    opacity: 0; /* Invisible by default */
+    background: #ffffff;
+    border-top: 1px solid #ddd;
+}
+
+/* Show Submenu on Checkbox Checked */
+.submenu-toggle:checked + .submenu-label + .submenu {
+    max-height: 500px; /* Arbitrary large value to ensure full visibility */
+    opacity: 1; /* Make visible */
+}
+
+/* Submenu Item */
+.submenu-item {
+    margin: 0;
+    padding: 0;
+}
+
+/* Submenu Link */
+.submenu-link {
+    display: block; /* Block to stack vertically */
+    text-decoration: none;
+    color: #333;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    background: #ffffff;
+    transition: background 0.3s;
+    
+}
+
+.submenu-link:hover {
+    background: #e2e6ea;
+    color: #000;
+}
+
+/* Icon Styling */
+.menu-link i,
+.submenu-link i {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+/* Arrow Rotation */
+.submenu-label .fas {
+    margin-left: auto; /* Push arrow to the right */
+    transition: transform 0.5s ease; /* Smooth rotation */
+}
+
+.submenu-toggle:checked + .submenu-label .fas {
+    transform: rotate(180deg); /* Rotate arrow when submenu is open */
+}
+
+/* Child Text */
+.childtext {
+    margin-left: 25px;
+    margin-top: -23px;
+    color: #697a8d;
+    text-decoration:"none";
+}
+
+
+</style>
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
             <a href="<?php echo base_url('blogpage  ')?>" class="app-brand-link">
@@ -68,7 +202,7 @@
 
           <div class="menu-inner-shadow"></div>
 
-          <ul class="menu-inner py-1">
+          <ul class="menu-inner py-1"style="border:none">
             <!-- Dashboard -->
             <!-- <li class="menu-item active">
               <a href="<?php echo base_url('blogpage')?>" class="menu-link">
@@ -80,25 +214,53 @@
             <!-- Layouts -->
          
    
-    <?php
-    //  print_r($leftsidebar); die;
-     $menu = json_decode($menu['json_output'], TRUE);
-     
-     foreach ($menu as $leftside) {
-         $route = $leftside['href'];
-         $icon = $leftside['icon'];
-         ?>
-         <li class="menu-item">
-             <a href="<?php echo base_url($route); ?>" class="menu-link">
-                 <i class="<?php echo $icon; ?>"></i> <!-- Add icon class inside <i> tag -->
-                 <div data-i18n="Basic" style="margin-left:20px">
-                     <?php echo $leftside['text']; ?>
-                 </div>
-             </a>
-         </li>
-          <!-- start  -->
-         <?php
-     }
 
+    <?php
+$menu = json_decode($menu['json_output'], TRUE);
+// print_r($menu);die;
 ?>
+<ul class="menu">
+    <?php
+    foreach ($menu as $leftside) {
+        $route = $leftside['href'];
+        $icon = $leftside['icon'];
+        ?>
+        <li class="menu-item">
+            <a href="<?php echo base_url($route); ?>" class="menu-link">
+                <i class="<?php echo $icon; ?>"></i>
+                <div style="margin-left:20px"><?php echo $leftside['text']; ?></div>
+            </a>
+            <?php
+            // Check if the menu item has children
+            if (!empty($leftside['children'])) {
+                ?>
+                <input type="checkbox" id="submenu-<?php echo $leftside['text']; ?>" class="submenu-toggle">
+                <label for="submenu-<?php echo $leftside['text']; ?>" class="submenu-label">
+                    <i class="fas fa-chevron-down" style="margin-left:30px"></i>
+                </label>
+                <ul class="submenu">
+                    <?php
+                    foreach ($leftside['children'] as $child) {
+                        $childRoute = $child['href'];
+                        $childIcon = $child['icon'];
+                        ?>
+                        <li class="submenu-item">
+                            <a href="<?php echo base_url($childRoute); ?>" class="submenu-link">
+                                <i style="color: #697a8d"class="<?php echo $childIcon; ?>"></i>
+                                <div class="childtext"><?php echo $child['text']; ?></div>
+                            </a>
+                        </li>
+                        <?php
+                    }
+                    ?>
+                </ul>
+                <?php
+            }
+            ?>
+        </li>
+        <?php
+    }
+    ?>
+</ul>
+
 </aside>

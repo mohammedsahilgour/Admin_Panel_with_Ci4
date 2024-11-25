@@ -127,21 +127,19 @@
             <?php
          include("inc/leftside.php");
         ?>
+           <?php
            
+     $menudata = json_decode($menudata['json_output'], TRUE);
+          //  print_r($menudata);die;
+           ?>
 <div class="container">
 <ul id="myEditor" class="sortableLists list-group">
 </ul>
 <div class="card border-primary mb-3">
     <div class="card-header bg-primary text-white">Edit item</div>
-   <?php
-   
-   
-  
-   
-   ?>
- 
+
         <div class="card-body">
-        <form id="frmEdit" class="form-horizontal" method="POST" action="<?php echo base_url("savesidebarmenu")?>">
+        <!-- <form id="frmEdit" class="form-horizontal" >
         <div class="form-group">
         <label for="text">Text</label>
         <div class="input-group">
@@ -174,12 +172,50 @@
         <input type="text" name="Permission" class="form-control item-menu" id="Permission" placeholder="Permission">
         </div>
         <div class="card-footer">
-        <button type="submit"class="btn btn-success"><i class="fas fa-plus"></i> Add</button>
+        <button type="submit" id="btnAdd"class="btn btn-success"><i class="fas fa-plus"></i> Add</button>
        </div>
         </form>
         <div class="card-footer">
         <button type="button" id="btnUpdate" class="btn btn-primary" disabled><i class="fas fa-sync-alt"></i> Update</button>
-       </div>
+       </div> -->
+       <!-- start  -->
+       <form id="frmEdit" class="form-horizontal">
+        <div class="form-group">
+        <label for="text">Text</label>
+        <div class="input-group">
+        <input type="text" class="form-control item-menu" name="text" id="text" placeholder="Text">
+        <div class="input-group-append">
+        <button type="button" id="myEditor_icon" class="btn btn-outline-secondary"></button>
+        </div>
+        </div>
+        <input type="hidden" name="icon" class="item-menu">
+        </div>
+        <div class="form-group">
+        <label for="href">URL</label>
+        <input type="text" class="form-control item-menu" id="href" name="href" placeholder="URL">
+        </div>
+        <div class="form-group">
+        <label for="target">Target</label>
+        <select name="target" id="target" class="form-control item-menu">
+        <option value="_self">Self</option>
+        <option value="_blank">Blank</option>
+        <option value="_top">Top</option>
+        </select>
+        </div>
+        <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" name="title" class="form-control item-menu" id="title" placeholder="Title">
+        </div>
+        <div class="form-group">
+        <label for="title">Permission </label>
+        <input type="text" name="Permission" class="form-control item-menu" id="Permission" placeholder="Permission">
+        </div>
+        </form>
+        </div>
+    <div class="card-footer">
+        <button type="button" id="btnUpdate" class="btn btn-primary" disabled><i class="fas fa-sync-alt"></i> Update</button>
+        <button type="button" id="btnAdd" class="btn btn-success"><i class="fas fa-plus"></i> Add</button>
+    </div>
         </div>
 </div>
 
@@ -202,10 +238,7 @@
             <div class="content-backdrop fade"></div>
             
           </div>
-          
-          <!-- Content wrapper -->
         </div>
-        <!-- / Layout page -->
       </div>
 
       <!-- Overlay -->
@@ -287,33 +320,35 @@ var editor = new MenuEditor('myEditor',
 	}
 ]
 var arrayjson = [
-        <?php foreach($menudata as $data): ?>
-        {
-            "href": "<?php echo $data['href']; ?>",
-            "icon": "<?php echo $data['icon']; ?>",
-            "text": "<?php echo $data['name']; ?>",
-            "target": "<?php echo $data['target']; ?>",
-            "title": "<?php echo $data['title']; ?>"
-        },
-        <?php endforeach; ?>
+    <?php foreach($menudata as $data): ?>
+    {
+        "href": "<?php echo $data['href']; ?>",
+        "icon": "<?php echo $data['icon']; ?>",
+        "text": "<?php echo $data['text']; ?>",
+        "target": "<?php echo $data['target']; ?>",
+        "title": "<?php echo $data['title']; ?>",
+        "children": <?php echo isset($data['children']) ? json_encode($data['children']) : '[]'; ?>
+    },
+    <?php endforeach; ?>
+];
         // Add your static object here
-        {
-            "iconn": "fas fa-search",
-            "textt": "Add",
-            "children": [
-                {
-                    "iconn": "fas fa-plug",
-                    "text": "default",
-                    "children": [
-                        {
-                            "iconn": "fas fa-filter",
-                            "text": "Opcion7-1-1"
-                        }
-                    ]
-                }
-            ]
-        }
-    ];
+        // {
+        //     "iconn": "fas fa-search",
+        //     "textt": "Add",
+        //     "children": [
+        //         {
+        //             "iconn": "fas fa-plug",
+        //             "text": "default",
+        //             "children": [
+        //                 {
+        //                     "iconn": "fas fa-filter",
+        //                     "text": "Opcion7-1-1"
+        //                 }
+        //             ]
+        //         }
+        //     ]
+        // }
+    // ];
 
     // Initialize the editor with the updated array
     editor.setData(arrayjson);

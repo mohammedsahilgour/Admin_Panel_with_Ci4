@@ -11,7 +11,7 @@ class MenuFilter implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
-        // Load the menu model or logic to get dynamic menu data
+
         $menuModel = new MenuModel();
         $menuData = $menuModel->getMenu(); // Assuming this returns the menu data
 
