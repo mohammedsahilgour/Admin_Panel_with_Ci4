@@ -52,6 +52,27 @@ $routes->match(['get','post'], 'deletemenudata', 'user::deletemenudata');
 $routes->match(['get','post'], 'menubar', 'user::menubar');
 $routes->match(['get','post'], 'savejsonoutput', 'user::savejsonoutput');
 $routes->match(['get','post'], 'savesidebarmenu', 'user::savesidebarmenu');
+$routes->match(['get','post'], 'bloghealthcategory', 'user::bloghealthcategory');
+$routes->match(['get','post'], 'edithealthblog', 'user::edithealthblog');
+$routes->match(['get','post'], 'updatehealthblog', 'user::updatehealthblog');
+$routes->match(['get','post'], 'educationblog', 'user::educationblog');
+$routes->match(['get','post'], 'editeducationblog', 'user::editeducationblog');
+$routes->match(['get','post'], 'updateeducationblog', 'user::updateeducationblog');
+$routes->match(['get','post'], 'healthnews', 'user::healthnews');
+$routes->match(['get','post'], 'edithealthnews', 'user::edithealthnews');
+$routes->match(['get','post'], 'updatehealthnews', 'user::updatehealthnews');
+$routes->match(['get','post'], 'educationnews', 'user::educationnews');
+$routes->match(['get','post'], 'editeducationnews', 'user::editeducationnews');
+$routes->match(['get','post'], 'updateeducationnews', 'user::updateeducationnews');
+
+
+
+
+
+
+
+
+
 
 
 

@@ -86,6 +86,13 @@
                     </div>
 
                     </div>
+                    <label for="">Category for</label>
+                    <select class="form-select" name="category_for" aria-label="Default select example">
+                        <option selected>Select Category</option>
+                        <option value="Health" <?php echo $data[0]['category_for'] === 'Health' ? 'selected' : ''; ?>>Health</option>
+                        <option value="Education" <?php echo $data[0]['category_for'] === 'Education' ? 'selected' : ''; ?>>Education</option>
+                    </select>
+                    <br>
                     <div >
                     <span class="details">Description</span>
                        

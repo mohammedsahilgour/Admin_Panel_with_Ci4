@@ -119,33 +119,37 @@
             <?php
          include("inc/leftside.php");
         ?>
-            <div class="container">
-                <div class="title">News  Post </div>
+            <div class="container" >
+                <div class="title" >News  Post </div>
            
                 <form action="<?php echo base_url('newssave')?>" method="POST" enctype="multipart/form-data">
                     <div class="user__details">
+                
                     <div class="input__box">
-                        <span class="details"> Name</span>
+                        <span class="details">Title</span>
+                        <input type="text" placeholder="Title" name="title"required>
+                    </div>
+                  
+                    <div class="input__box">
+                        <span class="details"> Author Name</span>
                         <a href="<?php echo base_url("blogs")?>"> eded</a>
 
                         <input type="text" placeholder="E.g: John Smith" name="name"required>
 
                     </div>
+                  
                     <div class="input__box">
                         <span class="details">Date</span>
-                        <input type="date" placeholder="johnWC98"name="date" required>
-                    </div>
-                    <div class="input__box">
-                        <span class="details">Email</span>
-                        <input type="email" placeholder="johnsmith@hotmail.com" name="email" required>
+                        <input type="date"  name="date" required>
+                        <!-- <input type="date"name="date"> -->
                     </div>
                     <div class="input__box">
                         <span class="details">Phone Number</span>
                         <input type="tel"  placeholder="012-345-6789" name="number"required>
                     </div>
                     <div class="input__box">
-                        <span class="details">Title</span>
-                        <input type="text" placeholder="Title" name="title"required>
+                        <span class="details">Email</span>
+                        <input type="email" placeholder="johnsmith@hotmail.com" name="email" required>
                     </div>
                     <div class="input__box">
                     <div class="gender__details">
@@ -173,6 +177,13 @@
                     </div>
 
                     </div>
+                    <label for="">Category for</label>
+                    <select class="form-select"name="category_for" aria-label="Default select example">
+                      <option selected > select Category</option>
+                      <option value="Health">Health</option>
+                      <option value="Education">Education</option>
+                      <!-- <option value="3">Three</option> -->
+                    </select><br>
                       <div class="mb-3">
                           <label for="formFileDisabled" class="form-label">News  Image </label>
                           <input class="form-control" type="file" name="image"id="formFileDisabled" >

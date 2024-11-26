@@ -29,18 +29,19 @@
 
 /* Menu Link */
 .menu-link {
-    display: flex;
+    display: flex
+;
     align-items: center;
     text-decoration: none;
     color: #333;
-    padding: 15px 20px;
+    padding: 20px 16px;
     background: #ffffff;
     /* border-bottom: 1px solid #ddd; */
     transition: background 0.3s;
+    margin-bottom: -21px;
 }
-
 .menu-link:hover {
-    background: #e2e6ea;
+  background: #ffffff;
 }
 
 /* Submenu Toggle (Hidden Checkbox) */
@@ -51,19 +52,29 @@
 /* Submenu Label */
 .submenu-label {
     display: flex;
-    align-items: center;
-    padding: 10px 20px;
+    gap: 1px;
     cursor: pointer;
     font-size: 14px;
     color: #555;
     background: #ffffff;
-    /* border-bottom: 1px solid #ddd; */
-    transition: background 0.3s;
+    transition: background 0.3s, color 0.3s; /* Add color transition for smooth effect */
+    position: relative;
+    top: -15px;
+    left: 135px;
+    width: 18px;
 }
 
+/* Hover effect */
 .submenu-label:hover {
-    background: #f1f1f1;
+ 
+    color: #333; /* Darker text color on hover */
 }
+
+
+
+/* .submenu-label:hover {
+    background: #f1f1f1;
+} */
 
 /* Submenu Container */
 .submenu {
@@ -94,18 +105,22 @@
 .submenu-link {
     display: block; /* Block to stack vertically */
     text-decoration: none;
-    color: #333;
+    /* color: #333; */
     padding: 10px 20px;
     border-bottom: 1px solid #ddd;
-    background: #ffffff;
-    transition: background 0.3s;
+
+    background-color: #E0E0E0; /* Light grey background */
+    color: #333333; /* Dark grey text */
+
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for animation */
+
     
 }
-
+/* 
 .submenu-link:hover {
     background: #e2e6ea;
     color: #000;
-}
+} */
 
 /* Icon Styling */
 .menu-link i,
@@ -117,20 +132,24 @@
 /* Arrow Rotation */
 .submenu-label .fas {
     margin-left: auto; /* Push arrow to the right */
-    transition: transform 0.5s ease; /* Smooth rotation */
+    margin-right: 10px; /* Add space if needed */
+    font-size: 16px; /* Adjust arrow size */
+    color: #697a8d; /* Match submenu text color */
+    transition: transform 0.4s ease; /* Smooth rotation */
 }
 
 .submenu-toggle:checked + .submenu-label .fas {
-    transform: rotate(180deg); /* Rotate arrow when submenu is open */
+    transform: rotate(180deg); /* Rotate arrow when submenu is expanded */
 }
 
 /* Child Text */
 .childtext {
     margin-left: 25px;
     margin-top: -23px;
-    color: #697a8d;
+    color: grey;
     text-decoration:"none";
 }
+
 
 
 </style>
@@ -225,11 +244,17 @@ $menu = json_decode($menu['json_output'], TRUE);
         $route = $leftside['href'];
         $icon = $leftside['icon'];
         ?>
-        <li class="menu-item">
-            <a href="<?php echo base_url($route); ?>" class="menu-link">
+                <!-- <div style="display:flex"> -->
+
+        <li class="`menu-item`">
+            <!-- <a href="<?php echo base_url($route); ?>" class="menu-link"> -->
+            <span class="menu-link">
                 <i class="<?php echo $icon; ?>"></i>
                 <div style="margin-left:20px"><?php echo $leftside['text']; ?></div>
-            </a>
+              </span>
+            <!-- </a> -->
+    
+            <!-- </div> -->
             <?php
             // Check if the menu item has children
             if (!empty($leftside['children'])) {
@@ -238,6 +263,7 @@ $menu = json_decode($menu['json_output'], TRUE);
                 <label for="submenu-<?php echo $leftside['text']; ?>" class="submenu-label">
                     <i class="fas fa-chevron-down" style="margin-left:30px"></i>
                 </label>
+              
                 <ul class="submenu">
                     <?php
                     foreach ($leftside['children'] as $child) {
@@ -250,6 +276,7 @@ $menu = json_decode($menu['json_output'], TRUE);
                                 <div class="childtext"><?php echo $child['text']; ?></div>
                             </a>
                         </li>
+                
                         <?php
                     }
                     ?>

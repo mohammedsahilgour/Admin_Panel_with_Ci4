@@ -175,6 +175,8 @@ class login_model extends Model
             'title' => $newsdata["title"] ,
             'gender' => $newsdata["gender"] ,
             'description' => $newsdata["description"],
+            'category_for' => $newsdata["category_for"],
+
            
 
         ];
@@ -203,7 +205,7 @@ class login_model extends Model
         $db      = \Config\Database::connect();
         $model= $db->table('news ');
         $check =   $model->where('id', $id )->set(['name'=>$data['name'],'title'=>$data['title'],'Date'=>$data['date'],'email'=>$data['email'],
-      'Number'=>$data['number'],'Description'=>$data['description'],'Gender'=>$data['gender']])->update();
+      'Number'=>$data['number'],'Description'=>$data['description'],'Gender'=>$data['gender'],'category_for'=>$data['category_for']])->update();
  
         return $check;
     }
@@ -267,6 +269,81 @@ class login_model extends Model
     public function save_sidebar_menu($data){
         $insert = $this->db->table('leftsidebar')->insert($data);
         return $insert;
+    }
+
+    public function get_health_blog(){
+        $query = $this->db->query("SELECT * FROM blog where category_for='Health' ");
+        return  $result = $query->getResult();
+    }
+    public function edit_health_blog($id){
+        // echo $id;die;
+        $query = $this->db->query("SELECT * FROM blog where id='$id' ");
+        return  $result = $query->getResult();
+    }
+
+    public function update_health_blog($data){
+        $id = $data["id"];
+        // print_r($data);die;
+        $db      = \Config\Database::connect();
+        $model= $db->table('blog');
+        $check =  $model->where('id', $id )->set(['name'=>$data['name'],'title'=>$data['title'],'Date'=>$data['date'],'email'=>$data['email'],
+        'Number'=>$data['number'],'Description'=>$data['description'],'Gender'=>$data['gender'],"category_for"=>$data['category_for']])->update();
+        return $check;
+    }
+    public function get_education_blog(){
+        $query = $this->db->query("SELECT * FROM blog where category_for='Education' ");
+        return  $result = $query->getResult();
+    }
+
+    public function edit_education_blog($id){
+        $query = $this->db->query("SELECT * FROM blog where id='$id' ");
+        return  $result = $query->getResult();
+    }
+
+    public function update_education_blog($data){
+        $id = $data["id"];
+        // print_r($data);die;
+        $db      = \Config\Database::connect();
+        $model= $db->table('blog');
+        $check =  $model->where('id', $id )->set(['name'=>$data['name'],'title'=>$data['title'],'Date'=>$data['date'],'email'=>$data['email'],
+        'Number'=>$data['number'],'Description'=>$data['description'],'Gender'=>$data['gender'],"category_for"=>$data['category_for']])->update();
+        return $check;
+    }
+
+    public function get_health_news(){
+        $query = $this->db->query("SELECT * FROM news where category_for='Health' ");
+        return  $result = $query->getResult();
+    }
+    public function edit_health_news($id){
+        $query = $this->db->query("SELECT * FROM news where id='$id' ");
+        return  $result = $query->getResult();
+    }
+    public function update_health_news($data){
+        $id = $data["id"];
+        // print_r($data);die;
+        $db      = \Config\Database::connect();
+        $model= $db->table('news');
+        $check =  $model->where('id', $id )->set(['name'=>$data['name'],'title'=>$data['title'],'Date'=>$data['date'],'email'=>$data['email'],
+        'Number'=>$data['number'],'Description'=>$data['description'],'Gender'=>$data['gender'],"category_for"=>$data['category_for']])->update();
+        return $check;
+    }
+    public function get_education_news(){
+        $query = $this->db->query("SELECT * FROM news where category_for='Education' ");
+        return  $result = $query->getResult();
+    }
+
+    public function edit_education_news($id){
+        $query = $this->db->query("SELECT * FROM news where id='$id' ");
+        return  $result = $query->getResult();
+    }
+    public function update_education_news($data){
+        $id = $data["id"];
+        // print_r($data);die;
+        $db      = \Config\Database::connect();
+        $model= $db->table('news');
+        $check =  $model->where('id', $id )->set(['name'=>$data['name'],'title'=>$data['title'],'Date'=>$data['date'],'email'=>$data['email'],
+        'Number'=>$data['number'],'Description'=>$data['description'],'Gender'=>$data['gender'],"category_for"=>$data['category_for']])->update();
+        return $check;
     }
 }
 ?>

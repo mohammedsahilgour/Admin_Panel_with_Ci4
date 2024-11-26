@@ -36,10 +36,7 @@
     top: -50;
     /* left: 68%; */
 }
-.h3, h3 {
-    font-size: 1.75rem;
-    margin-top: 4%;
-}
+/*  */
     </style>
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">

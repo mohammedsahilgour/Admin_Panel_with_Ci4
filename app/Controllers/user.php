@@ -486,4 +486,99 @@ class user extends BaseController
         return redirect()->to('menubar?id=' . $id);
     }
 
+    public function bloghealthcategory(){
+        $model = new login_model();
+       $data =  $model->get_health_blog();
+       $data=json_decode(json_encode($data),true);
+
+       return  view("healthblog",['data'=>$data]); 
+    
+       
+    }
+
+    public function edithealthblog(){
+        $id = $_GET['id'];
+        $model = new login_model();
+        $data =  $model->edit_health_blog($id);
+        $data=json_decode(json_encode($data),true);
+        // print_r($data);die;
+        return  view("edithealthblog",['data'=>$data]); 
+    }
+
+    public function updatehealthblog(){
+        $data = $this->request->getPost();
+        $model = new login_model();
+        $model->update_health_blog($data);
+        return redirect()->to('bloghealthcategory'); 
+    }
+    public function educationblog(){
+        $model = new login_model();
+        $data =  $model->get_education_blog();
+        $data=json_decode(json_encode($data),true);
+ 
+        return  view("educationblog",['data'=>$data]); 
+    }
+
+    public function editeducationblog(){
+        $id = $_GET['id'];
+        $model = new login_model();
+        $data =  $model->edit_education_blog($id);
+        $data=json_decode(json_encode($data),true);
+        return  view("editeducationhblog",['data'=>$data]); 
+      
+    }
+
+    public function updateeducationblog(){
+        $data = $this->request->getPost();
+        $model = new login_model();
+        $model->update_education_blog($data);
+        return redirect()->to('educationblog'); 
+    }
+
+    public function healthnews(){
+        $model = new login_model();
+       $data =  $model->get_health_news();
+       $data=json_decode(json_encode($data),true);
+
+       return  view("healthnews",['data'=>$data]); 
+    }
+    
+    public function edithealthnews(){
+        $id = $_GET['id'];
+        $model = new login_model();
+        $data =  $model->edit_health_news($id);
+        $data=json_decode(json_encode($data),true);
+        return  view("edithealthnews",['data'=>$data]); 
+    }
+
+    public function updatehealthnews(){
+        $data = $this->request->getPost();
+        $model = new login_model();
+        $model->update_health_news($data);
+        return redirect()->to('healthnews'); 
+    }
+    public function educationnews(){
+        $model = new login_model();
+        $data =  $model->get_education_news();
+        $data=json_decode(json_encode($data),true);
+ 
+        return  view("educationnews",['data'=>$data]); 
+    }
+
+    public function editeducationnews(){
+
+        $id = $_GET['id'];
+        $model = new login_model();
+        $data =  $model->edit_education_news($id);
+        $data=json_decode(json_encode($data),true);
+        return  view("editeducationnews",['data'=>$data]); 
+    }
+
+    public function updateeducationnews(){
+        $data = $this->request->getPost();
+        $model = new login_model();
+        $model->update_education_news($data);
+        return redirect()->to('educationnews'); 
+    }
+
 }

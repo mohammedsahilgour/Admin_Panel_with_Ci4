@@ -26,7 +26,9 @@ h1.fourth:hover span {
 h1.fourth span:first-child {
 	font-weight: 300;
 }
-
+.fourth{
+margin-top:120px;
+}
 /* ----------------- */
 /* Fifth */
 
@@ -66,7 +68,7 @@ h1.fourth span:first-child {
 	<h1 class="fourth " style='color:blue'><span>News </span><span>Table</span></h1>
   
   <div  style="margin-left:100px">
-<a href="<?php echo base_url('newspost')?>" class="btn btn-outline-primary">Add news </a>
+<a href="<?php echo base_url('newspost')?>"style="" class="btn btn-outline-primary">Add news </a>
 
 </div>
     <!-- ?> -->
@@ -75,11 +77,10 @@ h1.fourth span:first-child {
     <tbody>
       <tr>
         <th> s.no</th>
-        <th> User Name</th>
+        <th> Author Name</th>
         <th>email</th>
         <th>Image</th>
-
-        <th>number</th>
+        <th>category_for</th>
         
         <th colspan='2'>Action </th>
       
@@ -106,7 +107,7 @@ h1.fourth span:first-child {
         </td>
 
         <td data-th="password">
-        <?php echo $user_data['number'] ?>
+        <?php echo $user_data['category_for'] ?>
 
         </td>
       

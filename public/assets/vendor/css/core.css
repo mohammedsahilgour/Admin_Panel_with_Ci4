@@ -15020,6 +15020,7 @@ html:not(.layout-menu-fixed) .menu-inner-shadow {
 }
 .menu-link > :not(.menu-icon) {
   flex: 0 1 auto;
+  
   opacity: 1;
 }
 .menu:not(.menu-no-animation) .menu-link > :not(.menu-icon) {
