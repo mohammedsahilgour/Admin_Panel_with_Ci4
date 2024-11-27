@@ -11,9 +11,16 @@ $routes->match(['get','post'], 'registerform', 'user::index');
 $routes->get('login', 'user::loginpage');
 $routes->match(['get','post'], 'loginvalidate', 'user::userlogin');
 $routes->get('blogpage', 'user::blogpage');
-// $routes->post('blogpost', 'user::blogpost');
+
 $routes->match(['get','post'], 'insertblogpost', 'user::insertblogpost');
 $routes->match(['get','post'], 'blogpost', 'user::blogpage');
+
+$routes->match(['get','post'], 'user/table', 'user::table');
+$routes->match(['get','post'], 'user/bloghealthtable', 'user::bloghealthtable');
+$routes->match(['get','post'], 'user/blogeducationtable', 'user::blogeducationtable');
+$routes->match(['get','post'], 'user/blogeducationtable', 'user::blogeducationtable');
+$routes->match(['get','post'], 'user/getnewstable', 'user::getnewstable');
+
 
 
 

@@ -4,6 +4,11 @@ namespace App\Controllers;
  use App\models\user_model;
  use App\models\login_model;
  use App\models\MenuModel;
+ use App\models\blogmodel;
+ use App\models\blog_edu_model;
+ use App\models\news_model;
+
+
 
 
 
@@ -22,7 +27,7 @@ class user extends BaseController
             'number' => 'required',
         ])) {
           
-            print_r($data);die;
+            // print_r($data);die;
             return view('register');
         }else{
 
@@ -120,12 +125,227 @@ class user extends BaseController
        }
     }
 
-    // user blog table //
-    public function userblogs(){
-        $model = new login_model();
-       $data =  $model->select_user_data();
-         return view('userblog' , ['data'=> $data]);
+    public function table(){
+        $model = new login_Model();
+        $search = $this->request->getPost('search')['value'] ?? '';  // search value
+        $start = $this->request->getPost('start') ?? 0;  // start for pagination
+        $length = $this->request->getPost('length') ?? 10;  // length for pagination
+        $draw = $this->request->getPost('draw') ?? 1;  // DataTables draw
+        $start_date = $this->request->getPost('start_date') ?? null;
+        $end_date = $this->request->getPost('end_date') ?? null;
+    
+        // Order details
+        $order_column = $this->request->getPost('order')[0]['column'] ?? 0;
+        $order_dir = $this->request->getPost('order')[0]['dir'] ?? 'asc';
+    
+        // Define column names for ordering
+        $columns = ['id', 'name', 'title', 'email', 'category_for'];
+        $order_by = $columns[$order_column] ?? 'id';
+    
+        // Fetch filtered blogs
+        $blogs = $model->getFilteredBlogs($start, $length, $search, $order_by, $order_dir, $start_date, $end_date);
+    
+        // Get the total number of records (without filters)
+        $totalRecords = $model->countAllBlogs();
+    
+        // Get the total number of filtered records (with search and date filters)
+        $filteredRecords = $model->countFilteredBlogs($search, $start_date, $end_date);
+    
+        // Prepare data for DataTables
+        $counter = $start + 1;
+        $data = [];
+    
+        foreach ($blogs as $blog) {
+            $data[] = [
+                $counter++,
+                esc($blog['name']),
+                esc($blog['title']),
+                esc($blog['category_for']),
+                esc($blog['date']),
+                esc($blog['email']),
+                "<a href='" . base_url('editblog?id=' . $blog['id']) . "' class='edit-btn'>Edit</a>",
+                "<a href='" . base_url('deleteblog?id=' . $blog['id']) . "' class='delete-btn' onclick='return confirm(\"Are you sure you want to delete this blog?\")'>Delete</a>"
+            ];
+        }
+    
+        // Return the JSON response for DataTables
+        $response = [
+            "draw" => intval($draw),
+            "recordsTotal" => $totalRecords,
+            "recordsFiltered" => $filteredRecords,
+            "data" => $data // Array of blog data
+        ];
+    
+        return $this->response->setJSON($response);
     }
+    public function blogeducationtable(){
+                $model = new blog_edu_model();
+                $search = $this->request->getPost('search')['value'] ?? '';  // search value
+                $start = $this->request->getPost('start') ?? 0;  // start for pagination
+                $length = $this->request->getPost('length') ?? 10;  // length for pagination
+                $draw = $this->request->getPost('draw') ?? 1;  // DataTables draw
+                $start_date = $this->request->getPost('start_date') ?? null;
+                $end_date = $this->request->getPost('end_date') ?? null;
+            
+                // Order details
+                $order_column = $this->request->getPost('order')[0]['column'] ?? 0;
+                $order_dir = $this->request->getPost('order')[0]['dir'] ?? 'asc';
+            
+                // Define column names for ordering
+                $columns = ['id', 'name', 'title', 'email', 'category_for'];
+                $order_by = $columns[$order_column] ?? 'id';
+            
+                // Fetch filtered blogs
+                $blogs = $model->getFilteredBlogs($start, $length, $search, $order_by, $order_dir, $start_date, $end_date);
+            
+                // Get the total number of records (without filters)
+                $totalRecords = $model->countAllBlogs();
+            
+                // Get the total number of filtered records (with search and date filters)
+                $filteredRecords = $model->countFilteredBlogs($search, $start_date, $end_date);
+            
+                // Prepare data for DataTables
+                $counter = $start + 1;
+                $data = [];
+            // print_r($blogs);die;
+                foreach ($blogs as $blog) {
+                    $data[] = [
+                        $counter++,
+                        esc($blog['name']),
+                        esc($blog['title']),
+                        esc($blog['category_for']),
+                        esc($blog['date']),
+                        esc($blog['email']),
+                        "<a href='" . base_url('editblog?id=' . $blog['id']) . "' class='edit-btn'>Edit</a>",
+                        "<a href='" . base_url('deleteblog?id=' . $blog['id']) . "' class='delete-btn' onclick='return confirm(\"Are you sure you want to delete this blog?\")'>Delete</a>"  
+                    ];
+                }
+            
+                // Return the JSON response for DataTables
+                $response = [
+                    "draw" => intval($draw),
+                    "recordsTotal" => $totalRecords,
+                    "recordsFiltered" => $filteredRecords,
+                    "data" => $data // Array of blog data
+                ];
+            
+                return $this->response->setJSON($response);
+    }
+
+    
+    public function bloghealthtable(){
+                $model = new blogmodel();
+                $search = $this->request->getPost('search')['value'] ?? '';  // search value
+                $start = $this->request->getPost('start') ?? 0;  // start for pagination
+                $length = $this->request->getPost('length') ?? 10;  // length for pagination
+                $draw = $this->request->getPost('draw') ?? 1;  // DataTables draw
+                $start_date = $this->request->getPost('start_date') ?? null;
+                $end_date = $this->request->getPost('end_date') ?? null;
+            
+                // Order details
+                $order_column = $this->request->getPost('order')[0]['column'] ?? 0;
+                $order_dir = $this->request->getPost('order')[0]['dir'] ?? 'asc';
+            
+                // Define column names for ordering
+                $columns = ['id', 'name', 'title', 'email', 'category_for'];
+                $order_by = $columns[$order_column] ?? 'id';
+            
+                // Fetch filtered blogs
+                $blogs = $model->getFilteredBlogs($start, $length, $search, $order_by, $order_dir, $start_date, $end_date);
+            
+                // Get the total number of records (without filters)
+                $totalRecords = $model->countAllBlogs();
+            
+                // Get the total number of filtered records (with search and date filters)
+                $filteredRecords = $model->countFilteredBlogs($search, $start_date, $end_date);
+            
+                // Prepare data for DataTables
+                $counter = $start + 1;
+                $data = [];
+            // print_r($blogs);die;
+                foreach ($blogs as $blog) {
+                    $data[] = [
+                        $counter++,
+                        esc($blog['name']),
+                        esc($blog['title']),
+                        esc($blog['category_for']),
+                        esc($blog['date']),
+                        esc($blog['email']),
+                        "<a href='" . base_url('editblog?id=' . $blog['id']) . "' class='edit-btn'>Edit</a>",
+                        "<a href='" . base_url('deleteblog?id=' . $blog['id']) . "' class='delete-btn' onclick='return confirm(\"Are you sure you want to delete this blog?\")'>Delete</a>"  
+                    ];
+                }
+            
+                // Return the JSON response for DataTables
+                $response = [
+                    "draw" => intval($draw),
+                    "recordsTotal" => $totalRecords,
+                    "recordsFiltered" => $filteredRecords,
+                    "data" => $data // Array of blog data
+                ];
+            
+                return $this->response->setJSON($response);
+    }
+    public function getnewstable(){
+        $model = new news_model();
+        $search = $this->request->getPost('search')['value'] ?? '';  // search value
+        $start = $this->request->getPost('start') ?? 0;  // start for pagination
+        $length = $this->request->getPost('length') ?? 10;  // length for pagination
+        $draw = $this->request->getPost('draw') ?? 1;  // DataTables draw
+        $start_date = $this->request->getPost('start_date') ?? null;
+        $end_date = $this->request->getPost('end_date') ?? null;
+    
+        // Order details
+        $order_column = $this->request->getPost('order')[0]['column'] ?? 0;
+        $order_dir = $this->request->getPost('order')[0]['dir'] ?? 'asc';
+    
+        // Define column names for ordering
+        $columns = ['id', 'name', 'title', 'email', 'category_for'];
+        $order_by = $columns[$order_column] ?? 'id';
+    
+        // Fetch filtered blogs
+        $blogs = $model->getFilteredBlogs($start, $length, $search, $order_by, $order_dir, $start_date, $end_date);
+    
+        // Get the total number of records (without filters)
+        $totalRecords = $model->countAllBlogs();
+    
+        // Get the total number of filtered records (with search and date filters)
+        $filteredRecords = $model->countFilteredBlogs($search, $start_date, $end_date);
+    
+        // Prepare data for DataTables
+        $counter = $start + 1;
+        $data = [];
+    
+        foreach ($blogs as $blog) {
+            $data[] = [
+                $counter++,
+                esc($blog['name']),
+                esc($blog['title']),
+                esc($blog['category_for']),
+                esc($blog['date']),
+                esc($blog['email']),
+                "<a href='" . base_url('editnews?id=' . $blog['id']) . "' class='edit-btn'>Edit</a>",
+                "<a href='" . base_url('deletenews?id=' . $blog['id']) . "' class='delete-btn' onclick='return confirm(\"Are you sure you want to delete this blog?\")'>Delete</a>"
+            ];
+        }
+    
+        // Return the JSON response for DataTables
+        $response = [
+            "draw" => intval($draw),
+            "recordsTotal" => $totalRecords,
+            "recordsFiltered" => $filteredRecords,
+            "data" => $data // Array of blog data
+        ];
+    
+        return $this->response->setJSON($response);
+    }
+    public function userblogs()
+        {
+            return view("userblog");
+        }
+
+
+
     public function editblog(){
        
         $id = $_GET['id'];
@@ -351,17 +571,17 @@ class user extends BaseController
 
     public function newstable(){
         // echo "scec";die;
-        $model = new login_model();
-        $leftsidebar =  $model->select_leftside_bar();
-        $leftsidebar=json_decode(json_encode($leftsidebar),true);
-       $data =  $model->news_table_data();
-      $data=json_decode(json_encode($data),true);
+        //     $model = new login_model();
+        //     $leftsidebar =  $model->select_leftside_bar();
+        //     $leftsidebar=json_decode(json_encode($leftsidebar),true);
+        //    $data =  $model->news_table_data();
+        //   $data=json_decode(json_encode($data),true);
 
-    //    print_r($data);
-    //    die;
-    view('inc/leftside' , ['leftsidebar'=> $leftsidebar]);
+        //    print_r($data);
+        //    die;
+        view('inc/leftside' );
 
-        return view("newstable",["data" => $data]);
+            return view("newstable");
     }
 
     public function editnews(){
@@ -487,11 +707,11 @@ class user extends BaseController
     }
 
     public function bloghealthcategory(){
-        $model = new login_model();
-       $data =  $model->get_health_blog();
-       $data=json_decode(json_encode($data),true);
+    //     $model = new login_model();
+    //    $data =  $model->get_health_blog();
+    //    $data=json_decode(json_encode($data),true);
 
-       return  view("healthblog",['data'=>$data]); 
+       return  view("healthblog"); 
     
        
     }
@@ -512,11 +732,11 @@ class user extends BaseController
         return redirect()->to('bloghealthcategory'); 
     }
     public function educationblog(){
-        $model = new login_model();
-        $data =  $model->get_education_blog();
-        $data=json_decode(json_encode($data),true);
+        // $model = new login_model();
+        // $data =  $model->get_education_blog();
+        // $data=json_decode(json_encode($data),true);
  
-        return  view("educationblog",['data'=>$data]); 
+        return  view("educationblog"); 
     }
 
     public function editeducationblog(){

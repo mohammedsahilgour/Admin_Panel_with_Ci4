@@ -28,7 +28,26 @@ h1.fourth:hover span {
 h1.fourth span:first-child {
 	font-weight: 300;
 }
-
+.dataTables_wrapper {
+    position: relative;
+    clear: both;
+    margin-left: 30px;
+    width: 105%;
+    margin-top: -8%;
+}
+label {
+    display: inline-block;
+    margin-bottom: 8px;
+}
+table.dataTable tbody th, table.dataTable tbody td {
+    padding: 8px 10px;
+    background: white;
+    color: black;
+}
+.fourth{
+  margin-top:-50px;
+  margin-left:20px;
+}
 /* ----------------- */
 /* Fifth */
 
@@ -67,77 +86,34 @@ h1.fourth span:first-child {
    
     
     ?>  
-    	<h1 class="fourth " style='color:blue'><span style="margin-left:40px"> Education</span><span>Blogs</span></h1>
+    	<h1 class="fourth " style='color:blue'><span style="margin-left:20px">Education</span><span>Blogs</span></h1>
       <div class="add-more-btn"  style="margin-left:100px">
-    <a href="<?php echo base_url('blogpost')?>" style="margin-top:-80px"class="btn btn-outline-primary">Add Blogs </a>
+    <a href="<?php echo base_url('blogpost')?>" style="margin-top:-150px"class="btn btn-outline-primary">Add Blogs </a>
     
     </div>
 
-  <table class="rwd-table">
-    <tbody>
-      <tr>
-        <th> s.no</th>
-        <th>  Name</th>
-        <th>Date</th>
-        <th>Image</th>
-
-        <th>Title</th>
-        <th>Category for</th>
-        <th colspan='2'>Action </th>
-      
-      </tr>
+  <table class="rwd-table"id="blogTable">
+  <thead>
+    <tr>
+      <th>S.No</th>
+      <th>Author Name</th>
+      <th>Date</th>
+      <th>Category</th>
+      <th>Title</th>
+      <th>Email</th>
+      <!-- <th>Title</th>
+      <th>Category</th> -->
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
       <?php $count = 1;?>
       <?php
       // print_r($data);die;
       
       ?>
-      <?php foreach($data as $user_data){?>
-      <tr>
-  
-
-      <td data-th="Supplier Code">
-      <?php  echo $count ++?>
-        </td>
-        <td data-th="Supplier Code">
-        <?php echo $user_data['name'] ?>
-        </td>
-        <td data-th="Supplier Name">
-        <?php echo $user_data['date'] ?>
-
-        </td>
-        <td data-th="Supplier Name">
-        <img src="<?php echo base_url().'uploadimg/'.$user_data['image']; ?>"style="width:50px" alt="card__image" class="card__image" width="600">
-        </td>
-        <td data-th="Invoice Number">
-        <?php echo $user_data['title'] ?>
-
-        </td>
-        <td data-th="Invoice Date">
-        <?php echo $user_data['category_for'] ?>
-
-        </td>
-        <td data-th="Due Date">
-        <?php echo anchor('editeducationblog?id='.$user_data['id'] , '
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-          <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-          <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
-        </svg>
-        
-        ', 'id="$row->id"'); ?>
-        </td>
-        <td data-th="Due Date">
-        <?php echo anchor('deleteblog?id='.$user_data['id'] , '
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="red" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
-      </svg>
-        ', 'id="$row->id"'); ?>
-
-        </td>
-   
-      </tr>
-      <?php }?>
-   
- 
+      <tbody>
+     
     </tbody>
   </table>
 
@@ -146,6 +122,11 @@ h1.fourth span:first-child {
 </div>
 
           </div>
+            <!-- / Content -->
+            <!-- end  -->
+            <!-- Footer -->
+        
+            <!-- / Footer -->
 
             <div class="content-backdrop fade"></div>
           </div>
@@ -164,5 +145,58 @@ h1.fourth span:first-child {
     include("inc/footer.php");
   
   ?>
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script>
+$(document).ready(function () {
+    const table = $('#blogTable').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": "<?= base_url('user/blogeducationtable') ?>",
+            "type": "POST",
+            "data": function (d) {
+                d.start_date = $('#startDate').val(); 
+                d.end_date = $('#endDate').val();    
+            },
+            "dataSrc": function (json) {
+                // If the response structure is valid, DataTables will render the data.
+                console.log(json); // Check if the data is coming correctly
+                return json.data;
+            }
+        },
+        "columns": [
+          { "data": 0 }, // For s.no (This will be manually handled in the loop)
+            { "data": 1 }, // Author Name
+            { "data": 4 }, // Date
+            { "data": 3 }, // Image (add image URL here if needed)
+            { "data": 2 }, // Title
+            { "data": 5 }, // Category for
+            { "data": 6, "orderable": false}, // Edit link
+            { "data": 7 , "orderable": false}  // Delete link
+        ],
+        "pageLength": 4,
+        "lengthChange": false,
+        "searching": true,
+        "ordering": true,
+        "order": [[0, 'asc']],
+        "info": true
+    });
+
+    $('#filterButton').on('click', function () {
+        table.ajax.reload();
+    });
+});
+
+</script>
   </body>
 </html>
+
+
+
+
+

@@ -61,12 +61,6 @@ h1.fourth span:first-child {
 
   <div class="container">
 
-    <?php
-   
-    //  $data=json_decode(json_encode(  $data),true);
-   
-    
-    ?>  
     	<h1 class="fourth " style='color:blue'><span>Health</span><span>News</span></h1>
       <div class="add-more-btn"  style="margin-left:100px">
     <a href="<?php echo base_url('newspost')?>" style="margin-top:-80px"class="btn btn-outline-primary">Add News </a>
@@ -80,7 +74,6 @@ h1.fourth span:first-child {
         <th>  Name</th>
         <th>Date</th>
         <th>Image</th>
-
         <th>Title</th>
         <th>Category for</th>
         <th colspan='2'>Action </th>
