@@ -8,8 +8,10 @@
     /* ------------------- */
 
 .fourth{
-  margin-top:100px;
+  margin-top:200px;
+
 }
+
 h1.fourth { 
 	font-weight: 700;
     margin-left:-900px;
@@ -33,7 +35,8 @@ h1.fourth span:first-child {
     clear: both;
     margin-left: 30px;
     width: 105%;
-    margin-top: -8%;
+    /* margin-top: -8%; */
+    margin-top: -58px;
 }
 label {
     display: inline-block;
@@ -44,8 +47,86 @@ table.dataTable tbody th, table.dataTable tbody td {
     background: white;
     color: black;
 }
-/* ----------------- */
-/* Fifth */
+.filter{
+  margin-left:30px;
+  margin-top: 28px;
+
+}
+/* General container styling */
+.filter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 13px;
+    background-color: #f8f9fa; /* Light gray background */
+    border: 1px solid #ddd; /* Subtle border */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+    margin: 20px auto; /* Center with top and bottom spacing */
+    max-width: 600px; /* Limit max width */
+    margin-top:-50px;
+    margin-left:20px;
+}
+
+/* Individual filter styling */
+.filter {
+    display: flex;
+    flex-wrap: wrap; /* Wrap for smaller screens */
+    gap: 10px; /* Space between items */
+    align-items: center;
+}
+
+/* Labels */
+.filter label {
+    font-size: 16px;
+    color: #333; /* Dark gray text */
+    margin-right: 5px;
+}
+
+/* Input fields */
+.filter input[type="date"] {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.filter input[type="date"]:focus {
+    border-color: #007bff; /* Highlight border on focus */
+}
+
+/* Filter button */
+.filter button {
+    padding: 8px 15px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff; /* Blue button */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.filter button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .filter-container {
+        padding: 15px;
+    }
+    .filter {
+        flex-direction: column; /* Stack elements on smaller screens */
+        align-items: flex-start;
+    }
+    .filter button {
+        align-self: center; /* Center button */
+    }
+}
+
 
 </style>
     <div class="layout-wrapper layout-content-navbar">
@@ -82,8 +163,7 @@ table.dataTable tbody th, table.dataTable tbody td {
     <a href="<?php echo base_url('blogpost')?>" style="margin-top:-150px"class="btn btn-outline-primary">Add Blogs </a>
     
     </div>
-    <!-- <div class="filter-container">
-          
+    <div class="filter-container">
             <div class="filter">
                 <label for="startDate">Start Date:</label>
                 <input type="date" id="startDate">
@@ -91,7 +171,7 @@ table.dataTable tbody th, table.dataTable tbody td {
                 <input type="date" id="endDate">
                 <button id="filterButton">Filter</button>
             </div>
-            </div> -->
+      </div>
     <table class="rwd-table" id="blogTable">
 
   <thead>

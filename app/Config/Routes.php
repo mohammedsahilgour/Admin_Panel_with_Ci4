@@ -20,6 +20,16 @@ $routes->match(['get','post'], 'user/bloghealthtable', 'user::bloghealthtable');
 $routes->match(['get','post'], 'user/blogeducationtable', 'user::blogeducationtable');
 $routes->match(['get','post'], 'user/blogeducationtable', 'user::blogeducationtable');
 $routes->match(['get','post'], 'user/getnewstable', 'user::getnewstable');
+$routes->match(['get','post'], 'user/newshealthtable', 'user::newshealthtable');
+$routes->match(['get','post'], 'user/newseducationtable', 'user::newseducationtable');
+$routes->match(['get','post'], 'user/userdatatable', 'user::userdatatable');
+$routes->match(['get','post'], 'user/pagedatatable', 'user::pagedatatable');
+$routes->match(['get','post'], 'user/getmenutabledata', 'user::getmenutabledata');
+
+
+
+
+
 
 
 
