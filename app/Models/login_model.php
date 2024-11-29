@@ -408,6 +408,37 @@ class login_model extends Model
         return $builder->countAllResults();
     }
     
+    public function save_company_detail($data){
+        
+        $insert = $this->db->table('companydetail')->insert($data);
+        return $insert;
+    }
 
+    public function get_company_detail($id){
+        $query = $this->db->query("SELECT * FROM companydetail where id='$id' ");
+        return  $result = $query->getResult();
+    }
+
+    public function update_company_detail($data){
+        $id = $data['id'];
+        $db      = \Config\Database::connect();
+           $model= $db->table('companydetail');
+         $check =   $model->where('id', $id )->set(['company_name'=>$data['company_name'],'company_type'=>$data['company_type'],'company_email'=>$data['company_email'],
+         'date'=>$data['date']])->update();
+    
+           return $check;
+    }
+
+   public function  delete_company_detail($id){
+        $builder = $this->db->table('companydetail');
+        $builder->where('id', $id);
+        $builder->delete();
+            return true ;
+    }
+
+    public function save_company_data($data){
+        $insert = $this->db->table('companyaddress')->insert($data);
+        return $insert;
+    }
 }
 ?>

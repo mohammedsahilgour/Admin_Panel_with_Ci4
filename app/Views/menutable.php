@@ -123,8 +123,33 @@ table.dataTable tbody th, table.dataTable tbody td {
     .filter button {
         align-self: center; /* Center button */
     }
-} ----------------- */
+} ----
+------------- */
 /* Fifth */
+.fourth {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: blue; /* Ensures the inline color remains intact */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.fourth span {
+  display: inline-block;
+  margin: 0 5px;
+  animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 </style>
     <div class="layout-wrapper layout-content-navbar">
@@ -272,6 +297,6 @@ $(document).ready(function () {
 </html>
 
 
-
+`
 
 

@@ -25,6 +25,11 @@ $routes->match(['get','post'], 'user/newseducationtable', 'user::newseducationta
 $routes->match(['get','post'], 'user/userdatatable', 'user::userdatatable');
 $routes->match(['get','post'], 'user/pagedatatable', 'user::pagedatatable');
 $routes->match(['get','post'], 'user/getmenutabledata', 'user::getmenutabledata');
+$routes->match(['get','post'], 'addcompanydetail', 'user::addcompanydetail');
+$routes->match(['get','post'], 'savecompanydetail', 'user::savecompanydetail');
+$routes->match(['get','post'], 'companylist', 'user::companylist');
+
+
 
 
 
@@ -81,6 +86,13 @@ $routes->match(['get','post'], 'updatehealthnews', 'user::updatehealthnews');
 $routes->match(['get','post'], 'educationnews', 'user::educationnews');
 $routes->match(['get','post'], 'editeducationnews', 'user::editeducationnews');
 $routes->match(['get','post'], 'updateeducationnews', 'user::updateeducationnews');
+$routes->match(['get','post'], 'user/companydetaildatatable', 'user::companydetaildatatable');
+$routes->match(['get','post'], 'editcompanydetail', 'user::editcompanydetail');
+$routes->match(['get','post'], 'updatecompanydetail', 'user::updatecompanydetail');
+$routes->match(['get','post'], 'deletecompanydetail', 'user::deletecompanydetail');
+$routes->match(['get','post'], 'deletedatatableblog', 'user::deletedatatableblog');
+$routes->match(['get','post'], 'savemoreaddress', 'user::savemoreaddress');
+
 
 
 

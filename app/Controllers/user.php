@@ -12,6 +12,7 @@ namespace App\Controllers;
  use App\models\user_data_table_model;
  use App\models\page_data_table_model;
  use App\models\menu_data_table_model;
+ use App\models\company_table_model ;
 
 
 
@@ -437,7 +438,7 @@ public function getmenutabledata(){
             // esc($blog['Date']),
             "<a href='" . base_url('editmenu?id=' . $blog['id']) . "' class='edit-btn'>Edit</a>",
            
-            "<a href='" . base_url('deletemenudata?id=' . $blog['id']) . "' class='delete-btn' onclick='return confirm(\"Are you sure you want to delete this blog?\")'>Delete</a>",
+            "<a href='" . base_url('deletecompanydetail?id=' . $blog['id']) . "' class='delete-btn' onclick='return confirm(\"Are you sure you want to delete this blog?\")'>Delete</a>",
              "<a href='" . base_url('menubar?id=' . $blog['id']) . "' class='edit-btn'>Add menu</a>"
         ];
     }
@@ -1059,4 +1060,126 @@ public function userdatatable(){
         return redirect()->to('educationnews'); 
     }
 
+
+    public function addcompanydetail(){
+        return view("addcompanydetail");
+    }
+
+    public function savecompanydetail(){
+
+        $data = $this->request->getPost();
+        $model = new login_model();
+        $model->save_company_detail($data);
+        return view("addcompanydetail");
+
+    }
+
+    public function companylist(){
+        return view("companylist");
+    }
+    
+    public function companydetaildatatable(){
+        $model = new company_table_model();
+        $search = $this->request->getPost('search')['value'] ?? '';  // search value
+        $start = $this->request->getPost('start') ?? 0;  // start for pagination
+        $length = $this->request->getPost('length') ?? 10;  // length for pagination
+        $draw = $this->request->getPost('draw') ?? 1;  // DataTables draw
+        $start_date = $this->request->getPost('start_date') ?? null;
+        $end_date = $this->request->getPost('end_date') ?? null;
+    
+        // Order details
+        $order_column = $this->request->getPost('order')[0]['column'] ?? 0;
+        $order_dir = $this->request->getPost('order')[0]['dir'] ?? 'asc';
+    
+        // Define column names for ordering
+        $columns = ['id', 'company_name', 'company_type', 'company_email', 'date'];
+        $order_by = $columns[$order_column] ?? 'id';
+    
+        // Fetch filtered blogs
+        $blogs = $model->getFilteredBlogs($start, $length, $search, $order_by, $order_dir, $start_date, $end_date);
+    
+        // Get the total number of records (without filters)
+        $totalRecords = $model->countAllBlogs();
+    
+        // Get the total number of filtered records (with search and date filters)
+        $filteredRecords = $model->countFilteredBlogs($search, $start_date, $end_date);
+    
+        // Prepare data for DataTables
+        $counter = $start + 1;
+        $data = [];
+    
+        foreach ($blogs as $blog) {
+            $data[] = [
+                $counter++,
+                esc($blog['company_name']),
+                esc($blog['company_type']),
+                esc($blog['company_email']),
+                esc($blog['date']),
+                // esc($blog['email']),
+                "<a href='" . base_url('editcompanydetail?id=' . $blog['id']) . "' class='edit-btn'>Edit</a>",
+                "<a href='" . base_url('deletedatatableblog?id=' . $blog['id']) . "' class='delete-btn' onclick='return confirm(\"Are you sure you want to delete this blog?\")'>Delete</a>",
+                "<button class='btn btn-primary view-address-btn' data-company-id='" . $blog['id'] . "'>View Address</button>"
+
+            ];
+        }
+    
+        // Return the JSON response for DataTables
+        $response = [
+            "draw" => intval($draw),
+            "recordsTotal" => $totalRecords,
+            "recordsFiltered" => $filteredRecords,
+            "data" => $data // Array of blog data
+        ];
+    
+        return $this->response->setJSON($response);
+    }
+
+    public function editcompanydetail(){
+
+        $id = $_GET['id'];
+        $model = new login_model();
+      $data =  $model->get_company_detail($id);
+      $data=json_decode(json_encode($data),true);
+      return view("editcompanydetail",['data'=>$data]);
+
+    }
+
+    public function updatecompanydetail(){
+        $data = $this->request->getPost();
+        // print_r($data);die;
+        $model = new login_model();
+        $model->update_company_detail($data);
+        return redirect()->to('companylist'); 
+
+
+    }
+
+    public function deletecompanydetail(){
+        $id = $_GET['id'];
+        echo $id ; die;
+    }
+
+
+    public function deletedatatableblog(){
+        $id = $_GET['id'];
+       $model = new login_model();
+     $delete =   $model->delete_company_detail($id);
+       if($delete ==  true ){
+        return redirect()->to('companylist'); 
+
+       }
+
+    }
+
+
+    public function savemoreaddress(){
+        $data = $this->request->getPost();
+        // print_r($data);die;
+        $model = new login_model();
+        $model->save_company_data($data);
+        return redirect()->to('companylist'); 
+
+
+    }
 }
+
