@@ -434,11 +434,105 @@ class login_model extends Model
         $builder->where('id', $id);
         $builder->delete();
             return true ;
+
+            
+    }
+    public function save_company_data_batch($data)
+    {
+        foreach ($data as $row) {
+            // Check if 'id' exists and is a non-empty array
+            if (isset($row['id']) && is_array($row['id']) && !empty($row['id'])) {
+                // Loop through each ID and update the corresponding row
+                foreach ($row['id'] as $id) {
+                    // Fetch the existing record from the database
+                    $existing_record = $this->db->table('companyaddress')
+                        ->where('id', $id)
+                        ->get()
+                        ->getRow();
+    
+                    if ($existing_record) {
+                        // Prepare the update data
+                        $update_data = [];
+    
+                        // Check if each field is changed; if it is, add it to the update array
+                        if ($row['address'] !== $existing_record->address) {
+                            $update_data['address'] = $row['address'] ?? null;
+                        }
+                        if ($row['latitude'] !== $existing_record->latitude) {
+                            $update_data['latitude'] = $row['latitude'] ?? null;
+                        }
+                        if ($row['longitude'] !== $existing_record->longitude) {
+                            $update_data['longitude'] = $row['longitude'] ?? null;
+                        }
+                        if ($row['mobile'] !== $existing_record->mobile) {
+                            $update_data['mobile'] = $row['mobile'] ?? null;
+                        }
+    
+                        // If there's any data to update, perform the update
+                        if (!empty($update_data)) {
+                            $update_data['user_id'] = $row['user_id'] ?? $existing_record->user_id;
+    
+                            // Perform the update operation
+                            $this->db->table('companyaddress')
+                                     ->where('id', $id) // Target the specific ID
+                                     ->update($update_data);
+    
+                            // Optional: You can log the update data to verify
+                            log_message('debug', 'Updated Data for ID ' . $id . ': ' . json_encode($update_data));
+                        }
+                    } else {
+                        // If the record doesn't exist, insert it
+                        $this->db->table('companyaddress')->insert([
+                            "address" => $row['address'] ?? null,
+                            "latitude" => $row['latitude'] ?? null,
+                            "longitude" => $row['longitude'] ?? null,
+                            "mobile" => $row['mobile'] ?? null,
+                            "user_id" => $row['user_id'] ?? null,
+                        ]);
+                    }
+                }
+            } else {
+                // Insert a new record if no valid ID is provided
+                $this->db->table('companyaddress')->insert([
+                    "address" => $row['address'] ?? null,
+                    "latitude" => $row['latitude'] ?? null,
+                    "longitude" => $row['longitude'] ?? null,
+                    "mobile" => $row['mobile'] ?? null,
+                    "user_id" => $row['user_id'] ?? null,
+                ]);
+            }
+        }
+        return true; // Indicate success
+    }
+    
+    
+
+
+    
+    
+    
+    
+    public function get_user_companyaddress_data(){
+        $query = $this->db->query("SELECT * FROM companyaddress where user_id='4' ");
+        return  $result = $query->getResult();
     }
 
-    public function save_company_data($data){
-        $insert = $this->db->table('companyaddress')->insert($data);
-        return $insert;
+    public function fetch_company_address_of_user($id){
+
+        $query = $this->db->query("SELECT * FROM companyaddress where id='$id' ");
+        return  $result = $query->getResult();
+    }
+
+    public function updatecompanyaddressdata($data){
+         
+        $id = $data['id'];
+        // print_r($data);die;
+     $db      = \Config\Database::connect();
+        $model= $db->table('companyaddress');
+      $check =   $model->where('id', $id )->set(['address'=>$data['address'],'latitude'=>$data['latitude'],'longitude'=>$data['longitude'],
+      'mobile'=>$data['mobile']])->update();
+ 
+        return $check;
     }
 }
 ?>

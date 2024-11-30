@@ -92,6 +92,11 @@ $routes->match(['get','post'], 'updatecompanydetail', 'user::updatecompanydetail
 $routes->match(['get','post'], 'deletecompanydetail', 'user::deletecompanydetail');
 $routes->match(['get','post'], 'deletedatatableblog', 'user::deletedatatableblog');
 $routes->match(['get','post'], 'savemoreaddress', 'user::savemoreaddress');
+$routes->match(['get','post'], 'editcompanyaddressdata', 'user::editcompanyaddressdata');
+$routes->match(['get','post'], 'updatecompanyaddressdata', 'user::updatecompanyaddressdata');
+$routes->match(['get','post'], 'deletecompanyaddressdata', 'user::deletecompanyaddressdata');
+
+
 
 
 

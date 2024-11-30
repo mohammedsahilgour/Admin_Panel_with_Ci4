@@ -186,6 +186,71 @@ table.dataTable tbody th, table.dataTable tbody td {
     margin-top: 10px;
 }
 
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.table tr th {
+    background-color: #007bff; /* Fixed color syntax */
+    color: white; /* Adding text color for better contrast */
+}
+
+.table th, .table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+/* Edit and Delete Button Styles */
+a.btn-edit, a.btn-delete {
+    display: inline-block;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Edit Button Styling */
+a.btn-edit {
+    background-color: #28a745; /* Green for Edit */
+    border: 1px solid #218838;
+}
+
+a.btn-edit:hover {
+    background-color: #218838; /* Darker green on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Delete Button Styling */
+a.btn-delete {
+    background-color: #dc3545; /* Red for Delete */
+    border: 1px solid #c82333;
+}
+
+a.btn-delete:hover {
+    background-color: #c82333; /* Darker red on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Optional: Add spacing between buttons */
+td a {
+    margin-right: 10px;
+}
 
 </style>
     <div class="layout-wrapper layout-content-navbar">
@@ -277,9 +342,54 @@ table.dataTable tbody th, table.dataTable tbody td {
     </div>
     <!-- / Layout wrapper -->
     <div id="address-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); z-index: 9999; padding: 20px;">
-    <div style="background-color: white; padding: 20px; border-radius: 8px; max-width: 500px; margin: 0 auto; height: 80%; overflow-y: auto;">
-        <h3>Company Address</h3>
-        <form id="address-form" action="<?php echo base_url("savemoreaddress")?>" method="POST">
+    <div style="background-color: white; padding: 20px; border-radius: 8px; max-width: 700px; margin: 0 auto; height: 80%; overflow-y: auto;">
+        <!-- Table to display existing address data -->
+        <!-- <h3>Existing Company Address</h3> -->
+        <!-- <table class="table" style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+            <thead>
+                <tr>
+                    <th style="padding: 10px; border: 1px solid #ddd; text-align: left color:white;;">Address</th>
+                    <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Latitude</th>
+                    <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Longitude</th>
+                    <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Mobile</th>
+                    <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Edit</th>
+                    <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Delete</th>
+
+                </tr>
+            </thead> -->
+            <!-- <tbody> -->
+                <!-- Display the existing data -->
+                 <?php foreach($data as $data){?>
+                    <h3>Existing Company Address</h3>
+                    <form id="address-form" action="<?php echo base_url('savemoreaddress'); ?>" method="POST">
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address"value="<?php echo $data['address']?>" name="address[]" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="latitude">Latitude</label>
+                <input type="text" id="latitude" name="latitude[]" value="<?php echo $data['latitude']?>" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="longitude">Longitude</label>
+                <input type="text" id="longitude" name="longitude[]" value="<?php echo $data['longitude']?>"  class="form-control" required>
+                <input type="hidden" value="4" id="longitude" name="user_id[]" class="form-control">
+                <input type="hidden" value="<?php echo $data['id'] ?>" id="longitude" name="id[]" class="form-control">
+
+            </div>
+            <div class="form-group">
+                <label for="mobile">Mobile Number</label>
+                <input type="text" id="mobile" name="mobile[]"  value="<?php echo $data['mobile']?>" class="form-control" required>
+            </div>
+            <button id="save-address" type="submit" style="background-color: green; color: white; padding: 10px 20px; border: none; cursor: pointer; margin-top: 10px;">Save Address</button>
+        <!-- </form> -->
+                <?php }?>
+            <!-- </tbody>
+        </table> -->
+        
+        <!-- Form to Add New Address -->
+        <h3>Add New Address</h3>
+       
             <div class="form-group">
                 <label for="address">Address</label>
                 <input type="text" id="address" name="address[]" class="form-control" required>
@@ -291,16 +401,16 @@ table.dataTable tbody th, table.dataTable tbody td {
             <div class="form-group">
                 <label for="longitude">Longitude</label>
                 <input type="text" id="longitude" name="longitude[]" class="form-control" required>
+                <input type="hidden" value="4" id="longitude" name="user_id[]" class="form-control">
             </div>
             <div class="form-group">
                 <label for="mobile">Mobile Number</label>
                 <input type="text" id="mobile" name="mobile[]" class="form-control" required>
-
             </div>
-        <button id="save-address" style="background-color: green; color: white; padding: 10px 20px; border: none; cursor: pointer; margin-top: 10px;">Save</button>
-
+            <button id="save-address" type="submit" style="background-color: green; color: white; padding: 10px 20px; border: none; cursor: pointer; margin-top: 10px;">Save Address</button>
         </form>
-        <!-- Save button, dynamically moved -->
+
+        <!-- Buttons to Add More Addresses or Close -->
         <button id="add-new-address" style="background-color: blue; color: white; padding: 10px 20px; border: none; cursor: pointer; margin-top: 10px;">Add Another Address</button>
         <button id="close-overlay" style="background-color: red; color: white; padding: 10px 20px; border: none; cursor: pointer; margin-top: 10px;">Close</button>
     </div>
@@ -408,6 +518,7 @@ $(document).ready(function () {
             <div class="form-group">
                 <label for="mobile">Mobile Number</label>
                 <input type="text" name="mobile[]" class="form-control" required>
+                
             </div>
         `;
         // Append the new form to the existing address form

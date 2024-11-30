@@ -1075,7 +1075,11 @@ public function userdatatable(){
     }
 
     public function companylist(){
-        return view("companylist");
+        $model  = new login_model();
+      $data =   $model->get_user_companyaddress_data();
+      $data=json_decode(json_encode($data),true);
+
+        return view("companylist",['data'=>$data]);
     }
     
     public function companydetaildatatable(){
@@ -1156,6 +1160,7 @@ public function userdatatable(){
 
     public function deletecompanydetail(){
         $id = $_GET['id'];
+        echo "delete pending";
         echo $id ; die;
     }
 
@@ -1172,14 +1177,58 @@ public function userdatatable(){
     }
 
 
-    public function savemoreaddress(){
+    // public function savemoreaddress(){
+    //     $data = $this->request->getPost();
+    //     print_r($data);die;
+    //     $model = new login_model();
+    //     $model->save_company_data($data);
+    //     return redirect()->to('companylist'); 
+
+
+    // }
+
+    public function savemoreaddress() {
         $data = $this->request->getPost();
-        // print_r($data);die;
+        $insertData = [];
+        foreach ($data['address'] as $key => $value) {
+            $insertData[] = [
+                'address' => $value,
+                'latitude' => $data['latitude'][$key],
+                'longitude' => $data['longitude'][$key],
+                'mobile' => $data['mobile'][$key],
+                'user_id' => $data['user_id'][$key],
+                'id' => $data['id']
+            ];
+        }
+        $id = $insertData[0]['id'];
         $model = new login_model();
-        $model->save_company_data($data);
-        return redirect()->to('companylist'); 
+       $check =  $model->save_company_data_batch($insertData); // Use a batch insert method
+       if($check==true){
+        echo "doen";die;
+       }
+        return redirect()->to('companylist');
+    }
+    
+    public function editcompanyaddressdata(){
 
+        $id = $_GET['id'];
+        // echo $id ; die;\
+        $model = new login_model();
+        $data = $model->fetch_company_address_of_user($id);
+        $data=json_decode(json_encode($data),true);
+        return view("editcompanyaddressdata",['data'=>$data]);
+    }
 
+    public function updatecompanyaddressdata(){
+        $data = $this->request->getPost();
+        $model = new login_model();
+        $model->updatecompanyaddressdata($data);
+        return redirect()->to('companylist');
+
+    }
+
+    public function deletecompanyaddressdata(){
+        echo "data delete is pending";die;
     }
 }
 
